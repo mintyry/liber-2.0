@@ -326,8 +326,9 @@ const NavBar = () => {
                                     '& .MuiMenu-paper': {
                                         marginTop: '3%', // for tablets
                                     },
-                                    
+
                                 },
+                                top: '80px'
                             }}
                         >
                             <MenuItem onClick={handleMenuClose}>
@@ -349,7 +350,7 @@ const NavBar = () => {
                                     Meet &gt;
                                 </Link>
                             </MenuItem>
-                            
+
                             {isLoggedIn && role === 'admin' ?
                                 (
                                     <MenuItem onClick={handleMenuClose}>
