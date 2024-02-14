@@ -6,7 +6,7 @@
 
 Liber is an interactive e-reader along with book-saving capabilities and a social media aspect -- think your Kindle, GoodReads, and saved-books-app combined. The motivation behind this app was to have a fun way to interact with your favorite reads and classic novels and to build upon our knowledge of graphql with React. We also used Blender in tandem with Threejs.
 
-The app allows the user to search and view books, organized via our comprehensive search feature and a paginated system to help manage load times -- which was our biggest crux in learning throughout this project. We definitely kept in mind data size and load, but we also learned the hard way that testing in a development environment via localhost cannot prepare you for the real deal of a deployed server.
+The app allows the user to search and view books, organized via our comprehensive search feature and a paginated system to help manage load times -- which was our biggest crux in learning throughout this project. We definitely kept in mind data size and load, but we also learned the hard way that testing in a development environment via localhost cannot prepare you for the real deal of a deployed server. However, most importantly, despite the many features and capabilities built into Liber, our most important feature is simply being able to read! The user can read their favorite classic novel in an immersive 3D environment and ramp that experience up a notch with an optional auditory experience, which plays the sounds of a forest.
 
 We learned to really use Threejs, we really learned and got the flow of graphql and how to build data from start to finish successfully. For some of us, it made us miss how easy it was to make a search bar in basic HTML and JS, whereas now, it took some critical thinking to make that magic happen.
 
@@ -79,7 +79,7 @@ In order to contribute, one must fork their repository and create a pull request
 <a id="Tests"></a>
 ## Tests ⚖️
 
-In order to test, please run `N/A`.
+`N/A`
 
 
 <a id="Credits"></a>
