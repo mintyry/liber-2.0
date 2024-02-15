@@ -322,7 +322,7 @@ const NavBar = () => {
                                         color: '#8abbb1',
                                     },
                                 },
-                                '@media (min-width: 600px)': {
+                                '@media (min-width: 540px)': {
                                     '& .MuiMenu-paper': {
                                         marginTop: '3%', // for tablets
                                     },
