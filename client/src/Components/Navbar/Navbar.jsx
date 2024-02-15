@@ -328,7 +328,6 @@ const NavBar = () => {
                                     },
 
                                 },
-                                top: '80px'
                             }}
                         >
                             <MenuItem onClick={handleMenuClose}>
