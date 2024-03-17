@@ -25,6 +25,7 @@ import HighestRatedBook from '../Components/HighestRatedBook/HighRatedBook';
 
 
 function Home() {
+    console.log('hi there');
     const settings = {
         dots: true,
         arrows: false,
