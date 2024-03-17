@@ -10,9 +10,9 @@ The app allows the user to search and view books, organized via our comprehensiv
 
 We learned to really use Threejs, we really learned and got the flow of graphql and how to build data from start to finish successfully. For some of us, it made us miss how easy it was to make a search bar in basic HTML and JS, whereas now, it took some critical thinking to make that magic happen.
 
-But alas, throughout the ups and downs, we hope you enjoy the one word in Latin that means both "free" and "book": [Liber](https://liber-d603fbac9e96.herokuapp.com/).
+But alas, throughout the ups and downs, we hope you enjoy the one word in Latin that means both "free" and "book": [Liber 2.0](https://liber-com-71c194b85d8a.herokuapp.com).
 
-[Please enjoy the deployed Liber!](https://liber-d603fbac9e96.herokuapp.com/)
+[Please enjoy the deployed Liber 2.0!](https://liber-com-71c194b85d8a.herokuapp.com)
 ![Liber home](./client/src/assets/readmeimages/home.png)
 
 
