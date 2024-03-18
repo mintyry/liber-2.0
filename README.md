@@ -1,4 +1,6 @@
+# New Project
 
+<!-- 
 # Liber
 
 
@@ -104,4 +106,4 @@ Please enjoy our work at our respective GitHubs!
 - @[pashag123](https://github.com/pashag123)
 - @[mintyry](https://github.com/mintyry)
 
-For any additional inquiries, please message any one of us.
+For any additional inquiries, please message any one of us. -->
