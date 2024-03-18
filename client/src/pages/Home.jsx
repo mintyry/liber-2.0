@@ -21,11 +21,12 @@ import { useQuery } from '@apollo/client';
 // import any queries and mutations
 import { QUERY_ALL_BOOKS } from '../utils/queries';
 import MostEngagedBook from '../Components/MostEngagedBook/SpotlightBook';
+import HighestRated from '../Components/HighestRated/HighestRated'
 
 
 
 function Home() {
-    console.log('hi there');
+    // console.log('hi there');
     const settings = {
         dots: true,
         arrows: false,
@@ -184,7 +185,7 @@ function Home() {
 
                             <MostEngagedBook />
                             
-                            <MostEngagedBook />
+                            <HighestRated />
                         </>
                     )
                 }
