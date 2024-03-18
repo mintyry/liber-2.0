@@ -75,7 +75,7 @@ type Query {
     searchAllBooks(searchTerm: String!): [Book]
     getBooks(skip: Int): BookAndCount
     getSingleBook(_id: ID!): Book
-    highestRatedBook: Book
+    MostEngagedBook: Book
     bookDetails(bookId: ID!): Book
     getAllUsers: [User]
     getAllBooks(page: Int, itemsPerPage: Int): PaginatedBooks

@@ -94,9 +94,9 @@ query MyLibrary {
 }
 `;
 
-export const QUERY_HIGHEST_RATED_BOOK = gql`
-query HighestRatedBook {
-  highestRatedBook {
+export const QUERY_MOST_ENGAGED_BOOK= gql`
+query MostEngagedBook {
+  MostEngagedBook {
     _id
     authors {
       name

@@ -20,7 +20,7 @@ import Rating from '@mui/material/Rating';
 import { useQuery } from '@apollo/client';
 // import any queries and mutations
 import { QUERY_ALL_BOOKS } from '../utils/queries';
-import HighestRatedBook from '../Components/HighestRatedBook/HighRatedBook';
+import MostEngagedBook from '../Components/MostEngagedBook/SpotlightBook';
 
 
 
@@ -182,7 +182,9 @@ function Home() {
                                 </Grid>
                             </Grid>
 
-                            <HighestRatedBook />
+                            <MostEngagedBook />
+                            
+                            <MostEngagedBook />
                         </>
                     )
                 }

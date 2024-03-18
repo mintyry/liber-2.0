@@ -3,16 +3,16 @@ import { useQuery, useMutation } from '@apollo/client';
 import Button from '@mui/material/Button';
 import { Grid } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
-import { QUERY_HIGHEST_RATED_BOOK, QUERY_MY_LIBRARY } from '../../utils/queries';
-import './HighRatedBook.css';
+import { QUERY_MOST_ENGAGED_BOOK, QUERY_MY_LIBRARY } from '../../utils/queries';
+import './SpotlightBook.css';
 import { Link } from 'react-router-dom';
 import { KEEP_BOOK } from '../../utils/mutations';
 import { Modal } from '@mui/material';
 import Login from '../Login/Login';
 import useLoginClick from '../../utils/loginClick'
 
-const HighestRatedBook = () => {
-    const { loading, error, data } = useQuery(QUERY_HIGHEST_RATED_BOOK);
+const MostEngagedBook = () => {
+    const { loading, error, data } = useQuery(QUERY_MOST_ENGAGED_BOOK);
     const [bookAdded, setBookAdded] = useState(false);
     const [addedBooks, setAddedBooks] = useState(new Set()); // Keep track of added book IDs
 
@@ -28,29 +28,29 @@ const HighestRatedBook = () => {
     const [keepBookMutation] = useMutation(KEEP_BOOK, {
         refetchQueries: [{ query: QUERY_MY_LIBRARY }]
     });
-    const highestRatedBook = data?.highestRatedBook;
+    const MostEngagedBook = data?.MostEngagedBook;
 
     useEffect(() => {
-        // Reset bookAdded state when a new highest rated book is loaded
+        // Reset bookAdded state when a new MOST_ENGAGED book is loaded
         setBookAdded(false);
-    }, [highestRatedBook]);
+    }, [MostEngagedBook]);
 
     const handleKeepBook = async () => {
         try {
             // Check if the book has already been added
-            if (!addedBooks.has(highestRatedBook?._id)) {
+            if (!addedBooks.has(MostEngagedBook?._id)) {
                 await keepBookMutation({
                     variables: {
                         input: {
-                            bookId: highestRatedBook?._id,
-                            title: highestRatedBook?.title,
-                            image: { data: highestRatedBook?.image.data },
+                            bookId: MostEngagedBook?._id,
+                            title: MostEngagedBook?.title,
+                            image: { data: MostEngagedBook?.image.data },
                         },
                     },
                 });
 
                 // Update the set of added books
-                setAddedBooks(new Set(addedBooks).add(highestRatedBook?._id));
+                setAddedBooks(new Set(addedBooks).add(MostEngagedBook?._id));
 
                 // Set bookAdded to true when the book is successfully added
                 setBookAdded(true);
@@ -73,7 +73,7 @@ const HighestRatedBook = () => {
 
     if (error) {
         console.error(error);
-        return <p>Error fetching the highest-rated book</p>;
+        return <p>Error fetching the MOST_ENGAGED book</p>;
     }
 
     return (
@@ -92,7 +92,7 @@ const HighestRatedBook = () => {
                 <p style={{ fontSize: '2rem', color: '#505050' }}>Spotlight Read</p>
             </Grid>
 
-            {highestRatedBook ? (
+            {MostEngagedBook ? (
                 <>
                     <Grid
                         container
@@ -112,17 +112,17 @@ const HighestRatedBook = () => {
                         {/* Left */}
                         <Grid item xs={12} md={6} sx={{ padding: '2rem !important', backgroundColor: '#8ebfb5', borderRadius: '10px' }}>
                             <p className="spotlight-book-text" style={{ fontSize: '2rem', color: '#f3f3ec' }}>
-                                The current most-popular book is <em>{highestRatedBook.title}</em>. People are buzzing about it. Whether they like or they hate it, they are discussing this classic. Take part in the conversation or take a chance and read this book! Enjoy it with our bookworm community or save it to your MyLibrary for later. Feel free to comment and leave ratings on your favorite book. It may have a chance to be spotlighted here on <span style={{ fontFamily: 'Coventry Garden', whiteSpace: 'nowrap' }}>{'{'} L i b e r {'}'}</span>.
+                                The current most-popular book is <em>{MostEngagedBook.title}</em>. People are buzzing about it. Whether they like or they hate it, they are discussing this classic. Take part in the conversation or take a chance and read this book! Enjoy it with our bookworm community or save it to your MyLibrary for later. Feel free to comment and leave ratings on your favorite book. It may have a chance to be spotlighted here on <span style={{ fontFamily: 'Coventry Garden', whiteSpace: 'nowrap' }}>{'{'} L i b e r {'}'}</span>.
                             </p>
                         </Grid>
                         {/* Right */}
                         <Grid item xs={12} md={6} sx={{ textAlign: 'center' }}>
                             <div style={{ display: 'block' }}>
                                 <div>
-                                    <img src={`data:image/jpg;base64,${highestRatedBook.image.data}`} alt="highest rated book" style={{ outline: '6px double #f3f3ec', padding: '2rem', marginBottom: '1rem' }} />
+                                    <img src={`data:image/jpg;base64,${MostEngagedBook.image.data}`} alt="most engaged book" style={{ outline: '6px double #f3f3ec', padding: '2rem', marginBottom: '1rem' }} />
                                 </div>
-                                <p style={{ fontSize: '1.3rem', color: '#f3f3ec' }}>{highestRatedBook.title}</p>
-                                <p style={{ marginBottom: '1rem', color: '#f3f3ec' }}>Author: {highestRatedBook.authors.map((author) => author.name).join(', ')}</p>
+                                <p style={{ fontSize: '1.3rem', color: '#f3f3ec' }}>{MostEngagedBook.title}</p>
+                                <p style={{ marginBottom: '1rem', color: '#f3f3ec' }}>Author: {MostEngagedBook.authors.map((author) => author.name).join(', ')}</p>
                                 <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                                     {bookAdded ? (
                                         <Button sx={{ backgroundColor: 'grey' }} disabled={true} variant="contained" onClick={handleKeepBook}>
@@ -152,7 +152,7 @@ const HighestRatedBook = () => {
                                         ))
                                     )}
 
-                                    <Link to={`/bookReader/${highestRatedBook._id}`}>
+                                    <Link to={`/bookReader/${MostEngagedBook._id}`}>
                                         <Button
                                             sx={{
                                                 backgroundColor: '#8abbb1',
@@ -186,4 +186,4 @@ const HighestRatedBook = () => {
     );
 };
 
-export default HighestRatedBook;
+export default MostEngagedBook;

@@ -71,7 +71,7 @@ const resolvers = {
             };
         },
 
-        highestRatedBook: async () => {
+        MostEngagedBook: async () => {
             try {
                 const result = await Book.aggregate([
                     { $unwind: '$reviews' },
@@ -84,10 +84,10 @@ const resolvers = {
                             image: { $first: '$image' },
                             text: { $first: '$text' },
                             reviews: { $push: '$reviews' },
-                            highestRating: { $max: '$reviews.rating' },
+                            mostRated: { $max: '$reviews.rating' },
                         },
                     },
-                    { $sort: { highestRating: -1 } },
+                    { $sort: { mostRated: -1 } },
                     { $limit: 1 },
                 ]);
 
@@ -98,7 +98,7 @@ const resolvers = {
                 }
             } catch (error) {
                 console.error(error);
-                throw new Error('Failed to fetch the highest-rated book.');
+                throw new Error('Failed to fetch the most-engaged book.');
             }
         },
 
