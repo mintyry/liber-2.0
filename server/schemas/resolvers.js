@@ -74,7 +74,7 @@ const resolvers = {
         MostEngagedBook: async () => {
             try {
                 const result = await Book.aggregate([
-                    { $unwind: '$reviews' },
+                    { $unwind: '$reviews' }, // Deconstruct the reviews array
                     {
                         $group: {
                             _id: '$_id',
@@ -82,24 +82,30 @@ const resolvers = {
                             bookId: { $first: '$bookId' },
                             authors: { $first: '$authors' },
                             image: { $first: '$image' },
-                            text: { $first: '$text' },
                             reviews: { $push: '$reviews' },
-                            mostRated: { $max: '$reviews.rating' },
-                        },
+                            numReviews: { $sum: 1 } // Count the number of reviews for each book
+                        }
                     },
-                    { $sort: { mostRated: -1 } },
-                    { $limit: 1 },
+                    { $sort: { numReviews: -1 } }, // Sort by the number of reviews in descending order
+                    { $limit: 1 }
                 ]);
-
+            
+                // console.log('This is the result thus far:', JSON.stringify(result, null, 2));
+                // result.forEach(book => {
+                //     console.log(`Book: ${book.title}`);
+                //     console.log(`  Number of Reviews: ${book.numReviews}`);
+                // });
+            
                 if (result.length > 0) {
                     return result[0];
                 } else {
                     return null;
                 }
             } catch (error) {
-                console.error(error);
-                throw new Error('Failed to fetch the most-engaged book.');
+                console.error('Failed to calculate number of reviews:', error);
+                throw new Error('Failed to fetch the book with the most reviews.');
             }
+            
         },
 
         getAllUsers: async (parent, args, context) => {
@@ -131,18 +137,38 @@ const resolvers = {
                             title: { $first: '$title' },
                             bookId: { $first: '$bookId' },
                             authors: { $first: '$authors' },
-                            
-                            reviews: { $push: '$reviews' }
+                            image: { $first: '$image' },
+                            reviews: { $push: '$reviews' },
+                            avgRating: { $avg: '$reviews.rating'},
+                            numReviews: { $sum: 1 } // Count the number of reviews for each book
                         }
-                    }
+                    },
+                    { $sort: { avgRating: -1, numReviews: -1 } },
+                    { $limit: 1 }
                 ]);
-                // console.log('This is the result thus far:', JSON.stringify(result, null, 2));
+
+                console.log('This is the result thus far:', JSON.stringify(result, null, 2));
                 result.forEach(book => {
                     console.log(`Book: ${book.title}`);
-                    book.reviews.forEach(review => {
-                      console.log(`  Review: Rating - ${review.rating},`);
-                    });
-                  });
+                    console.log(`  Average Rating: ${book.avgRating}`);
+                });
+
+                // console.log(result);
+
+                // console.log('testing' + result.length);
+
+                // result.forEach(book => {
+                //     console.log(`Book: ${book.title}`);
+                //     book.reviews.forEach(review => {
+                //       console.log(`  Review: Rating - ${review.rating},`);
+                //     });
+                //   });
+
+                if (result.length > 0) {
+                    return result[0];
+                } else {
+                    return null;
+                }
 
             } catch (error) {
                 console.error('Failed to calculate average rating:', error);
