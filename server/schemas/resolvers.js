@@ -110,6 +110,46 @@ const resolvers = {
 
             throw AuthenticationError;
         },
+
+        HighestRatedBook: async () => {
+            try {
+                const result = await Book.aggregate([
+                    { $unwind: '$reviews' }, // Deconstruct the reviews array
+                    {
+                        $lookup: {
+                            from: 'reviews', // Name of the 'reviews' collection
+                            localField: 'reviews', //reviews field
+                            foreignField: '_id', //id from reviews collection
+                            as: 'reviews'
+                        }
+                    },
+                    { $unwind: '$reviews' }, //unravel the reviews from an object
+                    {
+                        // group reviews back into book data.
+                        $group: {
+                            _id: '$_id',
+                            title: { $first: '$title' },
+                            bookId: { $first: '$bookId' },
+                            authors: { $first: '$authors' },
+                            
+                            reviews: { $push: '$reviews' }
+                        }
+                    }
+                ]);
+                // console.log('This is the result thus far:', JSON.stringify(result, null, 2));
+                result.forEach(book => {
+                    console.log(`Book: ${book.title}`);
+                    book.reviews.forEach(review => {
+                      console.log(`  Review: Rating - ${review.rating},`);
+                    });
+                  });
+
+            } catch (error) {
+                console.error('Failed to calculate average rating:', error);
+                throw new Error('Failed to fetch the highest-rated book.');
+            }
+        },
+
     },
 
     Mutation: {

@@ -156,20 +156,21 @@ query getOneUser($id: ID) {
 `
 
 export const QUERY_HIGHEST_RATED_BOOK= gql`
-query MostEngagedBook {
-  MostEngagedBook {
+query HighestRatedBook {
+  HighestRatedBook {
     _id
+    title
+    bookId
     authors {
       name
     }
-    bookId
     image {
       data
     }
+    text
     reviews {
       rating
     }
-    title
   }
 }
 `
