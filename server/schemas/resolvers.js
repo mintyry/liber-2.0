@@ -89,13 +89,13 @@ const resolvers = {
                     { $sort: { numReviews: -1 } }, // Sort by the number of reviews in descending order
                     { $limit: 1 }
                 ]);
-            
+
                 // console.log('This is the result thus far:', JSON.stringify(result, null, 2));
                 // result.forEach(book => {
                 //     console.log(`Book: ${book.title}`);
                 //     console.log(`  Number of Reviews: ${book.numReviews}`);
                 // });
-            
+
                 if (result.length > 0) {
                     return result[0];
                 } else {
@@ -105,7 +105,7 @@ const resolvers = {
                 console.error('Failed to calculate number of reviews:', error);
                 throw new Error('Failed to fetch the book with the most reviews.');
             }
-            
+
         },
 
         getAllUsers: async (parent, args, context) => {
@@ -121,6 +121,7 @@ const resolvers = {
             try {
                 const result = await Book.aggregate([
                     { $unwind: '$reviews' }, // Deconstruct the reviews array
+                    // basically like .populate(); look up a field from another collection and add it into current collection/documents
                     {
                         $lookup: {
                             from: 'reviews', // Name of the 'reviews' collection
@@ -139,24 +140,24 @@ const resolvers = {
                             authors: { $first: '$authors' },
                             image: { $first: '$image' },
                             reviews: { $push: '$reviews' },
-                            avgRating: { $avg: '$reviews.rating'},
+                            avgRating: { $avg: '$reviews.rating' },
                             numReviews: { $sum: 1 } // Count the number of reviews for each book
                         }
                     },
+                    // organize; SORTS BY AVG FIRST THEN NUM OF REVIEWS
                     { $sort: { avgRating: -1, numReviews: -1 } },
+                    // query one
                     { $limit: 1 }
                 ]);
 
-                console.log('This is the result thus far:', JSON.stringify(result, null, 2));
-                result.forEach(book => {
-                    console.log(`Book: ${book.title}`);
-                    console.log(`  Average Rating: ${book.avgRating}`);
-                });
+                // THIS CONSOLE LOGS EACH RESULT, IE: EACH BOOK WITH THEIR AVG RATINGS
+                // console.log('This is the result thus far:', JSON.stringify(result, null, 2));
+                // result.forEach(book => {
+                //     console.log(`Book: ${book.title}`);
+                //     console.log(`  Average Rating: ${book.avgRating}`);
+                // });
 
-                // console.log(result);
-
-                // console.log('testing' + result.length);
-
+                // LOGS EACH BOOK AND EACH RATING IN EACH BOOK
                 // result.forEach(book => {
                 //     console.log(`Book: ${book.title}`);
                 //     book.reviews.forEach(review => {
@@ -164,6 +165,7 @@ const resolvers = {
                 //     });
                 //   });
 
+                // IF MORE THAN ONE, RETURN FIRST ONE
                 if (result.length > 0) {
                     return result[0];
                 } else {
