@@ -1,5 +1,7 @@
 TODO: 
 
+- FIX NAV MENU SO IT IS NOT TOO BIG
+
 - limit ratings to one? (so user cannot overinflate ratings)
 - make an admin role after deploy, make sure to leave a note when submitting project 3 the sign in details so this way Diarmuid/Meg can access an admin account and test it out
 
@@ -24,8 +26,9 @@ NOTES (can leave notes here detailing what you did):
         Made it so you cannot make duplicate users anymore (unique email and username); to see this work, you must drop your old users collection in db first.
 
         color scheme: 
-        rosegold: #ebd8d1
-        grey: #7f7f7f
+        coral: #eed6c5
+        dark coral: #c5af9f
+        brown: #666256
             offwhite: #f3f3ec
             forest green: #8abbb1
             black: #000000 or 'black'

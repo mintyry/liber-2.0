@@ -16,6 +16,8 @@ import { useState, useEffect } from 'react';
 import { Grid, Pagination } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import Rating from '@mui/material/Rating';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
 // hooks from apollo
 import { useQuery } from '@apollo/client';
 // import any queries and mutations
@@ -23,6 +25,11 @@ import { QUERY_ALL_BOOKS } from '../utils/queries';
 import MostEngagedBook from '../Components/MostEngagedBook/SpotlightBook';
 import HighestRated from '../Components/HighestRated/HighestRated'
 
+const theme = createTheme({
+    palette: {
+        primary: { main: red[200] },
+    },
+});
 
 
 function Home() {
@@ -134,16 +141,18 @@ function Home() {
             <Grid container sx={{ display: 'flex', justifyContent: 'center' }}>
                 {loading ?
                     (
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <CircularProgress color="success" />
-                        </div>
+                        <ThemeProvider theme={theme}>
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                <CircularProgress color="primary" />
+                            </div>
+                        </ThemeProvider>
                     ) :
                     (
                         <>
 
                             <Grid container className="bottom-home-div">
                                 {/* // parent div holding books */}
-                                <Grid className="books-container" container spacing={2} sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'stretch', justifyContent: 'center', padding: '5vw', border: 'double 10px #cae4df', marginLeft: '5rem', marginRight: '5rem', marginBottom: '2rem' }}>
+                                <Grid className="books-container" container spacing={2} sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'stretch', justifyContent: 'center', padding: '5vw', border: 'double 10px #eed6c5', marginLeft: '5rem', marginRight: '5rem', marginBottom: '2rem' }}>
 
                                     {/* each book will be in its own div */}
                                     {books.map((book, index) => (
@@ -171,20 +180,23 @@ function Home() {
                                     ))}
                                 </Grid>
                                 <Grid item sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-
-                                    <Pagination
-                                        sx={{ button: { color: '#8abbb1' } }}
-                                        count={totalPages}
-                                        page={currentPage}
-                                        onChange={changePage}
-                                        variant="outlined"
-                                        color="success" />
+                                    <ThemeProvider theme={theme}>
+                                        <Pagination
+                                            sx={{
+                                                button: { color: '#666256' }
+                                            }}
+                                            count={totalPages}
+                                            page={currentPage}
+                                            onChange={changePage}
+                                            variant="outlined"
+                                            color="primary" />
+                                    </ThemeProvider>
 
                                 </Grid>
                             </Grid>
 
                             <MostEngagedBook />
-                            
+
                             <HighestRated />
                         </>
                     )

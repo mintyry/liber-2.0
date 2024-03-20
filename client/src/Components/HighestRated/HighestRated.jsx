@@ -89,7 +89,7 @@ const HighestRated = () => {
                     marginBottom: '1rem',
                 }}
             >
-                <p style={{ fontSize: '2rem', color: '#bdb0aa' }}>Outstanding Read</p>
+                <p style={{ fontSize: '2rem', color: '#c5af9f' }}>Outstanding Read</p>
             </Grid>
 
             {HighestRatedBook ? (
@@ -104,7 +104,7 @@ const HighestRated = () => {
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            backgroundColor: '#ebd8d1',
+                            backgroundColor: '#eed6c5',
                             padding: '3rem',
                             flexDirection: 'row',
                         }}
@@ -116,8 +116,8 @@ const HighestRated = () => {
                                 <div>
                                     <img src={`data:image/jpg;base64,${HighestRatedBook.image.data}`} alt="highest rated book" style={{ outline: '6px double #f3f3ec', padding: '2rem', marginBottom: '1rem' }} />
                                 </div>
-                                <p style={{ fontSize: '1.3rem', color: '#7f7f7f' }}>{HighestRatedBook.title}</p>
-                                <p style={{ marginBottom: '1rem', color: '#7f7f7f' }}>Author: {HighestRatedBook.authors.map((author) => author.name).join(', ')}</p>
+                                <p style={{ fontSize: '1.3rem', color: '#666256' }}>{HighestRatedBook.title}</p>
+                                <p style={{ marginBottom: '1rem', color: '#666256' }}>Author: {HighestRatedBook.authors.map((author) => author.name).join(', ')}</p>
                                 <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                                     {bookAdded ? (
                                         <Button sx={{ backgroundColor: 'grey' }} disabled={true} variant="contained" onClick={handleKeepBook}>
@@ -126,10 +126,10 @@ const HighestRated = () => {
                                     ) : (
                                         (isLoggedIn ? (
                                             <Button sx={{
-                                                backgroundColor: '#8abbb1',
-                                                color: '#f3f3ec',
+                                                backgroundColor: '#f3f3ec',
+                                                color: '#666256',
                                                 '&:hover': {
-                                                    backgroundColor: '#6a8e86',
+                                                    backgroundColor: '#fff',
                                                 },
                                             }} variant="contained" onClick={handleKeepBook}>
                                                 Keep Book
@@ -137,7 +137,7 @@ const HighestRated = () => {
                                         ) : (
                                             <Button sx={{
                                                 backgroundColor: '#f3f3ec',
-                                                color: '#7f7f7f',
+                                                color: '#666256',
                                                 '&:hover': {
                                                     backgroundColor: '#fff',
                                                 },
@@ -151,7 +151,7 @@ const HighestRated = () => {
                                         <Button
                                             sx={{
                                                 backgroundColor: '#f3f3ec',
-                                                color: '#7f7f7f',
+                                                color: '#666256',
                                                 '&:hover': {
                                                     backgroundColor: '#fff',
                                                 },
@@ -166,8 +166,8 @@ const HighestRated = () => {
                         </Grid>
 
                          {/* Left */}
-                         <Grid item xs={12} md={6} sx={{ padding: '2rem !important', backgroundColor: '#ebdfda', borderRadius: '10px' }}>
-                            <p className="spotlight-book-text" style={{ fontSize: '2rem', color: '#7f7f7f' }}>
+                         <Grid item xs={12} md={6} sx={{ padding: '2rem !important', backgroundColor: '#f7dfcd', borderRadius: '10px' }}>
+                            <p className="spotlight-book-text" style={{ fontSize: '2rem', color: '#666256' }}>
                                 Currently, the highest rated book is <em>{HighestRatedBook.title}</em>. The <span style={{ fontFamily: 'Coventry Garden', whiteSpace: 'nowrap' }}>{'{'} L i b e r {'}'}</span> community has spoken, and we love this book! It's proven to be a great read, so it is absolutely worth checking out! Give it a read now or keep it in your MyBookshelf to read later!
                             </p>
                         </Grid>

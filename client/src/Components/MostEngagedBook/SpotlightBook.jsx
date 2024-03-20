@@ -89,7 +89,7 @@ const MostEngagedBook = () => {
                     marginBottom: '1rem',
                 }}
             >
-                <p style={{ fontSize: '2rem', color: '#505050' }}>Spotlight Read</p>
+                <p style={{ fontSize: '2rem', color: '#c5af9f' }}>Spotlight Read</p>
             </Grid>
 
             {MostEngagedBook ? (
@@ -104,13 +104,13 @@ const MostEngagedBook = () => {
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            backgroundColor: '#dbd3bd',
+                            backgroundColor: '#eed6c5',
                             padding: '3rem',
                             flexDirection: 'row',
                         }}
                     >
                         {/* Left */}
-                        <Grid item xs={12} md={6} sx={{ padding: '2rem !important', backgroundColor: '#e2dac4', borderRadius: '10px' }}>
+                        <Grid item xs={12} md={6} sx={{ padding: '2rem !important', backgroundColor: '#f7dfcd', borderRadius: '10px' }}>
                             <p className="spotlight-book-text" style={{ fontSize: '2rem', color: '#666256' }}>
                                 The current most-popular book is <em style={{fontWeight: '400'}}>{MostEngagedBook.title}</em>. People are buzzing about it. Whether they like or they hate it, they are discussing this classic. Take part in the conversation or take a chance and read this book! Enjoy it with our bookworm community or save it to your MyLibrary for later. Feel free to comment and leave ratings on your favorite book. It may have a chance to be spotlighted here on <span style={{ fontFamily: 'Coventry Garden', whiteSpace: 'nowrap' }}>{'{'} L i b e r {'}'}</span>.
                             </p>
@@ -121,8 +121,8 @@ const MostEngagedBook = () => {
                                 <div>
                                     <img src={`data:image/jpg;base64,${MostEngagedBook.image.data}`} alt="most engaged book" style={{ outline: '6px double #f3f3ec', padding: '2rem', marginBottom: '1rem' }} />
                                 </div>
-                                <p style={{ fontSize: '1.3rem', color: '#f3f3ec' }}>{MostEngagedBook.title}</p>
-                                <p style={{ marginBottom: '1rem', color: '#f3f3ec' }}>Author: {MostEngagedBook.authors.map((author) => author.name).join(', ')}</p>
+                                <p style={{ fontSize: '1.3rem', color: '#666256' }}>{MostEngagedBook.title}</p>
+                                <p style={{ marginBottom: '1rem', color: '#666256' }}>Author: {MostEngagedBook.authors.map((author) => author.name).join(', ')}</p>
                                 <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                                     {bookAdded ? (
                                         <Button sx={{ backgroundColor: 'grey' }} disabled={true} variant="contained" onClick={handleKeepBook}>
@@ -131,20 +131,20 @@ const MostEngagedBook = () => {
                                     ) : (
                                         (isLoggedIn ? (
                                             <Button sx={{
-                                                backgroundColor: '#8abbb1',
-                                                color: '#f3f3ec',
+                                                backgroundColor: '#f3f3ec',
+                                                color: '#666256',
                                                 '&:hover': {
-                                                    backgroundColor: '#6a8e86',
+                                                    backgroundColor: '#fff',
                                                 },
                                             }} variant="contained" onClick={handleKeepBook}>
                                                 Keep Book
                                             </Button>
                                         ) : (
                                             <Button sx={{
-                                                backgroundColor: '#8abbb1',
-                                                color: '#f3f3ec',
+                                                backgroundColor: '#f3f3ec',
+                                                color: '#666256',
                                                 '&:hover': {
-                                                    backgroundColor: '#6a8e86',
+                                                    backgroundColor: '#fff',
                                                 },
                                             }} variant="contained" onClick={handleLoginClick}>
                                                 Keep Book
@@ -155,10 +155,10 @@ const MostEngagedBook = () => {
                                     <Link to={`/bookReader/${MostEngagedBook._id}`}>
                                         <Button
                                             sx={{
-                                                backgroundColor: '#8abbb1',
-                                                color: '#f3f3ec',
+                                                backgroundColor: '#f3f3ec',
+                                                color: '#666256',
                                                 '&:hover': {
-                                                    backgroundColor: '#6a8e86',
+                                                    backgroundColor: '#fff',
                                                 },
                                             }}
                                             variant="contained"

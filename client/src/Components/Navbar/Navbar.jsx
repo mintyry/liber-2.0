@@ -185,7 +185,7 @@ const NavBar = () => {
                     <StyledTypography variant="h6">
                         <Hidden mdDown>
                             {isLoggedIn ?
-                                <Link style={{ textDecoration: 'none', color: 'black' }} to="/myLibrary">
+                                <Link style={{ textDecoration: 'none', color: '#666256' }} to="/myLibrary">
                                     <Button className="navlinks" color="inherit" sx={{ height: '100%' }}>
 
                                         MyLibrary
@@ -194,7 +194,7 @@ const NavBar = () => {
                                 </Link>
 
                                 :
-                                <Link style={{ textDecoration: 'none', color: 'black' }} to="/">
+                                <Link style={{ textDecoration: 'none', color: '#666256' }} to="/">
                                     <Button className="navlinks" color="inherit" onClick={handleLoginClick} sx={{ height: '100%' }}>
 
                                         MyLibrary
@@ -204,7 +204,7 @@ const NavBar = () => {
 
 
 
-                            <Link style={{ textDecoration: 'none', color: 'black' }} to="/allbooks">
+                            <Link style={{ textDecoration: 'none', color: '#666256' }} to="/allbooks">
                                 <Button className="navlinks" color="inherit" sx={{ height: '100%' }}>
 
                                     Books
@@ -212,7 +212,7 @@ const NavBar = () => {
                                 </Button>
                             </Link>
 
-                            <Link style={{ textDecoration: 'none', color: 'black' }} to="/surprise">
+                            <Link style={{ textDecoration: 'none', color: '#666256' }} to="/surprise">
                                 <Button className="navlinks" color="inherit" sx={{ height: '100%' }}>
 
                                     Meet
@@ -235,7 +235,7 @@ const NavBar = () => {
                                 </>
                             )}
                             {isLoggedIn && role === 'admin' && (
-                                <Link style={{ textDecoration: 'none', color: 'black' }} to="/admin">
+                                <Link style={{ textDecoration: 'none', color: '#666256' }} to="/admin">
                                     <Button className="navlinks" color="inherit" sx={{ height: '100%' }}>
 
                                         Admin
@@ -273,9 +273,9 @@ const NavBar = () => {
                                 },
                                 // outlined input outline
                                 '& .MuiOutlinedInput-notchedOutline': {
-                                    borderColor: 'black',
+                                    borderColor: '#666256',
                                 },
-                                color: 'black !important', // Set text color to black
+                                color: '#666256 !important', // Set text color to brown
                                 fontFamily: 'Lato !important', // Set font family
 
                             }}
@@ -283,7 +283,7 @@ const NavBar = () => {
                                 endAdornment: (
                                     <InputAdornment position="end">
                                         <IconButton edge="end" color="inherit" onClick={handleSearch}>
-                                            <SearchIcon sx={{ color: 'white', backgroundColor: '#8abbb1', borderRadius: '5px', padding: '4px' }} />
+                                            <SearchIcon sx={{ color: '#666256', backgroundColor: '#eed6c5', borderRadius: '5px', padding: '4px' }} />
                                         </IconButton>
                                     </InputAdornment>
                                 ),

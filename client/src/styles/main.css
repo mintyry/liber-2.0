@@ -16,7 +16,7 @@ body {
     background-color: #f3f3ec;
     background-repeat: no-repeat;
     /* min-height: 100vh; */
-    color: black;
+    color: #666256;
 }
 
 body::-webkit-scrollbar {
@@ -28,7 +28,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-    background: linear-gradient(#8abbb1, #c0dbbd);
+    background: linear-gradient(#fff3c8, #ebd8d1, #fff3c8);
     border-radius: 10px;
 }
 
