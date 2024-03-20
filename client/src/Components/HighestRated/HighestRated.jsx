@@ -89,7 +89,7 @@ const HighestRated = () => {
                     marginBottom: '1rem',
                 }}
             >
-                <p style={{ fontSize: '2rem', color: '#505050' }}>Spotlight Read</p>
+                <p style={{ fontSize: '2rem', color: '#bdb0aa' }}>Outstanding Read</p>
             </Grid>
 
             {HighestRatedBook ? (
@@ -104,25 +104,20 @@ const HighestRated = () => {
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            backgroundColor: '#8abbb1',
+                            backgroundColor: '#ebd8d1',
                             padding: '3rem',
                             flexDirection: 'row',
                         }}
                     >
-                        {/* Left */}
-                        <Grid item xs={12} md={6} sx={{ padding: '2rem !important', backgroundColor: '#8ebfb5', borderRadius: '10px' }}>
-                            <p className="spotlight-book-text" style={{ fontSize: '2rem', color: '#f3f3ec' }}>
-                                Currently, the highest rated book is <em>{HighestRatedBook.title}</em>. People are buzzing about it. Whether they like or they hate it, they are discussing this classic. Take part in the conversation or take a chance and read this book! Enjoy it with our bookworm community or save it to your MyLibrary for later. Feel free to comment and leave ratings on your favorite book. It may have a chance to be spotlighted here on <span style={{ fontFamily: 'Coventry Garden', whiteSpace: 'nowrap' }}>{'{'} L i b e r {'}'}</span>.
-                            </p>
-                        </Grid>
+                    
                         {/* Right */}
                         <Grid item xs={12} md={6} sx={{ textAlign: 'center' }}>
                             <div style={{ display: 'block' }}>
                                 <div>
                                     <img src={`data:image/jpg;base64,${HighestRatedBook.image.data}`} alt="highest rated book" style={{ outline: '6px double #f3f3ec', padding: '2rem', marginBottom: '1rem' }} />
                                 </div>
-                                <p style={{ fontSize: '1.3rem', color: '#f3f3ec' }}>{HighestRatedBook.title}</p>
-                                <p style={{ marginBottom: '1rem', color: '#f3f3ec' }}>Author: {HighestRatedBook.authors.map((author) => author.name).join(', ')}</p>
+                                <p style={{ fontSize: '1.3rem', color: '#7f7f7f' }}>{HighestRatedBook.title}</p>
+                                <p style={{ marginBottom: '1rem', color: '#7f7f7f' }}>Author: {HighestRatedBook.authors.map((author) => author.name).join(', ')}</p>
                                 <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
                                     {bookAdded ? (
                                         <Button sx={{ backgroundColor: 'grey' }} disabled={true} variant="contained" onClick={handleKeepBook}>
@@ -141,10 +136,10 @@ const HighestRated = () => {
                                             </Button>
                                         ) : (
                                             <Button sx={{
-                                                backgroundColor: '#8abbb1',
-                                                color: '#f3f3ec',
+                                                backgroundColor: '#f3f3ec',
+                                                color: '#7f7f7f',
                                                 '&:hover': {
-                                                    backgroundColor: '#6a8e86',
+                                                    backgroundColor: '#fff',
                                                 },
                                             }} variant="contained" onClick={handleLoginClick}>
                                                 Keep Book
@@ -155,10 +150,10 @@ const HighestRated = () => {
                                     <Link to={`/bookReader/${HighestRatedBook._id}`}>
                                         <Button
                                             sx={{
-                                                backgroundColor: '#8abbb1',
-                                                color: '#f3f3ec',
+                                                backgroundColor: '#f3f3ec',
+                                                color: '#7f7f7f',
                                                 '&:hover': {
-                                                    backgroundColor: '#6a8e86',
+                                                    backgroundColor: '#fff',
                                                 },
                                             }}
                                             variant="contained"
@@ -168,6 +163,13 @@ const HighestRated = () => {
                                     </Link>
                                 </div>
                             </div>
+                        </Grid>
+
+                         {/* Left */}
+                         <Grid item xs={12} md={6} sx={{ padding: '2rem !important', backgroundColor: '#ebdfda', borderRadius: '10px' }}>
+                            <p className="spotlight-book-text" style={{ fontSize: '2rem', color: '#7f7f7f' }}>
+                                Currently, the highest rated book is <em>{HighestRatedBook.title}</em>. The <span style={{ fontFamily: 'Coventry Garden', whiteSpace: 'nowrap' }}>{'{'} L i b e r {'}'}</span> community has spoken, and we love this book! It's proven to be a great read, so it is absolutely worth checking out! Give it a read now or keep it in your MyBookshelf to read later!
+                            </p>
                         </Grid>
                     </Grid>
                 </>

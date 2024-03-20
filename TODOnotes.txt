@@ -24,6 +24,8 @@ NOTES (can leave notes here detailing what you did):
         Made it so you cannot make duplicate users anymore (unique email and username); to see this work, you must drop your old users collection in db first.
 
         color scheme: 
+        rosegold: #ebd8d1
+        grey: #7f7f7f
             offwhite: #f3f3ec
             forest green: #8abbb1
             black: #000000 or 'black'
