@@ -29,6 +29,7 @@ const HighestRated = () => {
         refetchQueries: [{ query: QUERY_MY_LIBRARY }]
     });
     const HighestRatedBook = data?.HighestRatedBook;
+    
 
     useEffect(() => {
         // Reset bookAdded state when a new highest rated book is loaded
