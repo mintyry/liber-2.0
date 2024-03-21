@@ -24,6 +24,7 @@ const userSchema = new Schema({
         type: Schema.Types.Mixed,
         ref: 'Book'
     }],
+    orders: [Order.schema]
 },
     {
         timestamps: true
