@@ -96,6 +96,9 @@ type Query {
     getAllUsers: [User]
     getAllBooks(page: Int, itemsPerPage: Int): PaginatedBooks
     HighestRatedBook: Book
+    donation:(_id: ID!): Donation
+    order(_id: ID!): Order
+    checkout(donation: Float): Checkout
 }
 
 input ImageInput {
