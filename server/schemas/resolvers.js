@@ -9,11 +9,15 @@ const resolvers = {
         myLibrary: async (parent, args, context) => {
             if (context.user) {
                 // get data about user except password
-                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password')
+                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate({
+                    path: 'orders.donation',
+                });
+
+                userData.orders.sort((a, b) => b.orderDate - a.orderDate);
 
                 return userData;
             }
-            throw AuthenticationError;
+            throw AuthenticationError('User is not authneticated');
         },
 
         bookDetails: async (_, { bookId }) => {
@@ -178,6 +182,9 @@ const resolvers = {
                 throw new Error('Failed to fetch the highest-rated book.');
             }
         },
+        donation: async (parent, { _id }) => {
+            return await Donation.findById(_id);
+        }
 
     },
 
