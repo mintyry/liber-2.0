@@ -46,16 +46,12 @@ body::-webkit-scrollbar-thumb {
     border-radius: 10px;
 }
 
-
-
-
-
 p {
     margin: 0;
-    /* color: #ededdd; */
+
 }
 
-/* had to explicitly declare the coventry garden font to the browser, because otherwise, dummy dafari cant recognize it */
+/* had to explicitly declare the coventry garden font to the browser, because otherwise, dummy safari cant recognize it */
 @font-face {
     font-family: 'Coventry Garden';
     src: url('../../coventry-garden.regular.ttf') format('truetype');
