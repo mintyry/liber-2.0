@@ -14,6 +14,7 @@ type User {
 
 type Donation {
     _id: ID
+    name: String
     price: Float
 }
 
