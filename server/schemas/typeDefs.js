@@ -9,6 +9,22 @@ type User {
     role: String
     keptBooks: [Book]
     createdAt: String
+    orders: [Order]
+}
+
+type Donation {
+    _id: ID
+    price: Float
+}
+
+type Order {
+    _id: ID
+    orderDate: String
+    donation: Donation
+}
+
+type Checkout {
+    session: ID
 }
 
 type Author {
