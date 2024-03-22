@@ -14,6 +14,7 @@ type User {
 
 type Donation {
     _id: ID
+    name: String
     price: Float
 }
 
@@ -96,7 +97,7 @@ type Query {
     getAllUsers: [User]
     getAllBooks(page: Int, itemsPerPage: Int): PaginatedBooks
     HighestRatedBook: Book
-    donation:(_id: ID!): Donation
+    donation(_id: ID!): Donation
     order(_id: ID!): Order
     checkout(donation: Float): Checkout
 }
@@ -124,6 +125,7 @@ type Mutation {
     addComment( reviewId: ID!, content: String): Review
     removeUser(_id: ID): User
     updateUser(_id: ID): User
+    addOrder(donation: ID!): Order
 }
 
 `;
