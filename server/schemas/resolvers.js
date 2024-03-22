@@ -1,5 +1,6 @@
-const { User, Book, Review } = require('../models');
+const { User, Book, Review, Donation, Order } = require('../models');
 const { AuthenticationError, signToken } = require('../utils/auth');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const resolvers = {
 
@@ -8,11 +9,15 @@ const resolvers = {
         myLibrary: async (parent, args, context) => {
             if (context.user) {
                 // get data about user except password
-                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password')
+                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate({
+                    path: 'orders.donation',
+                });
+
+                userData.orders.sort((a, b) => b.orderDate - a.orderDate);
 
                 return userData;
             }
-            throw AuthenticationError;
+            throw AuthenticationError('User is not authneticated');
         },
 
         bookDetails: async (_, { bookId }) => {
@@ -177,6 +182,49 @@ const resolvers = {
                 throw new Error('Failed to fetch the highest-rated book.');
             }
         },
+
+        donation: async (parent, { _id }) => {
+            return await Donation.findById(_id);
+        },
+
+        order: async (parent, { _id }, context) => {
+            if (context.user) {
+                // get data about user except password
+                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate({
+                    path: 'orders.donation',
+                });
+
+                return userData.orders.id(_id);
+            }
+            throw AuthenticationError;
+        },
+
+        checkout: async (parent, args, context) => {
+
+            const url = new URL(context.headers.referer).origin;
+
+            // create new Order w/ donation ID (associates donation with order)
+            const order = await Order.create({ donation: args.donation });
+            // line_item object represents donation being made; it's a donation with a specific amount in USD.
+            const line_item = {
+                price_data: {
+                    currency: 'usd',
+                    name: 'Donation',
+                    unit_amount: args.donation * 100
+                }
+            };
+
+            // make new checkout session; this defines details of the payment like payment method types accepted, the line item, etc.
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                line_item,
+                mode: 'payment',
+                success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${url}/`,
+            });
+
+            return { session: session.id };
+        }
 
     },
 
