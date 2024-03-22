@@ -1,6 +1,5 @@
-const { User, Book, Review, Donation, Order } = require('../models');
+const { User, Book, Review } = require('../models');
 const { AuthenticationError, signToken } = require('../utils/auth');
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const resolvers = {
 
@@ -9,15 +8,11 @@ const resolvers = {
         myLibrary: async (parent, args, context) => {
             if (context.user) {
                 // get data about user except password
-                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate({
-                    path: 'orders.donation',
-                });
-
-                userData.orders.sort((a, b) => b.orderDate - a.orderDate);
+                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password')
 
                 return userData;
             }
-            throw AuthenticationError('User is not authneticated');
+            throw AuthenticationError;
         },
 
         bookDetails: async (_, { bookId }) => {
@@ -182,7 +177,6 @@ const resolvers = {
                 throw new Error('Failed to fetch the highest-rated book.');
             }
         },
-
 
     },
 
