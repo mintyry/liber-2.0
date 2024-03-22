@@ -9,23 +9,6 @@ type User {
     role: String
     keptBooks: [Book]
     createdAt: String
-    orders: [Order]
-}
-
-type Donation {
-    _id: ID
-    name: String
-    price: Float
-}
-
-type Order {
-    _id: ID
-    orderDate: String
-    donation: Donation
-}
-
-type Checkout {
-    session: ID
 }
 
 type Author {
@@ -97,9 +80,6 @@ type Query {
     getAllUsers: [User]
     getAllBooks(page: Int, itemsPerPage: Int): PaginatedBooks
     HighestRatedBook: Book
-    donation:(_id: ID!): Donation
-    order(_id: ID!): Order
-    checkout(donation: Float): Checkout
 }
 
 input ImageInput {
@@ -125,7 +105,6 @@ type Mutation {
     addComment( reviewId: ID!, content: String): Review
     removeUser(_id: ID): User
     updateUser(_id: ID): User
-    addOrder(donation: ID!): Order
 }
 
 `;
