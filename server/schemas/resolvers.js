@@ -183,22 +183,6 @@ const resolvers = {
             }
         },
 
-        donation: async (parent, { _id }) => {
-            return await Donation.findById(_id);
-        },
-
-        order: async (parent, { _id }, context) => {
-            if (context.user) {
-                // get data about user except password
-                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate({
-                    path: 'orders.donation',
-                });
-
-                return userData.orders.id(_id);
-            }
-            throw AuthenticationError;
-        },
-
 
     },
 
