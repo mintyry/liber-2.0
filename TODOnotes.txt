@@ -108,3 +108,35 @@ if (context.user) {
                     
                     This is a sentence. 
                     \n
+
+
+
+===========
+
+
+         checkout: async (parent, args, context) => {
+
+            const url = new URL(context.headers.referer).origin;
+
+            // create new Order w/ donation ID (associates donation with order)
+            const order = await Order.create({ donation: args.donation });
+            // line_item object represents donation being made; it's a donation with a specific amount in USD.
+            const line_item = {
+                price_data: {
+                    currency: 'usd',
+                    name: 'Donation',
+                    unit_amount: args.donation * 100
+                }
+            };
+
+            // make new checkout session; this defines details of the payment like payment method types accepted, the line item, etc.
+            const session = await stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                line_item,
+                mode: 'payment',
+                success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${url}/`,
+            });
+
+            return { session: session.id };
+        }
