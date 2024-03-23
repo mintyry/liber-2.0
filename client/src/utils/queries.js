@@ -90,14 +90,11 @@ query MyLibrary {
       bookId
       _id
     }
-    orders {
+    donations {
       _id
-      donation {
-        _id
-        name
-        price
-      }
-      orderDate
+      name
+      price
+      donationDate
     }
   }
 }
