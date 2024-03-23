@@ -15,7 +15,7 @@ const donationSchema = new Schema(
             required: true,
             min: 0.01
         },
-        donateDate:
+        donationDate:
         {
             type: Date,
             default: Date.now
