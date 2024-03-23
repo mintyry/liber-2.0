@@ -90,11 +90,20 @@ query MyLibrary {
       bookId
       _id
     }
+    orders {
+      _id
+      donation {
+        _id
+        name
+        price
+      }
+      orderDate
+    }
   }
 }
 `;
 
-export const QUERY_MOST_ENGAGED_BOOK= gql`
+export const QUERY_MOST_ENGAGED_BOOK = gql`
 query MostEngagedBook {
   MostEngagedBook {
     _id
@@ -155,7 +164,7 @@ query getOneUser($id: ID) {
 }
 `
 
-export const QUERY_HIGHEST_RATED_BOOK= gql`
+export const QUERY_HIGHEST_RATED_BOOK = gql`
 query HighestRatedBook {
   HighestRatedBook {
     _id

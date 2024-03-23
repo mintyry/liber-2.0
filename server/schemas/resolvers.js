@@ -369,6 +369,20 @@ const resolvers = {
             } else {
                 throw new Error('Unauthorized. Admin privileges required.');
             }
+        },
+
+        addOrder: async(parent, { donation }, context) => {
+            if (context.user) {
+                const order = new Order({ donation });
+
+                await User.findByIdAndUpdate(context.user._id, {
+                    $push: { orders: order }
+                });
+
+                return order;
+            }
+
+            throw AuthenticationError;
         }
 
 
