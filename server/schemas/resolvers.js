@@ -10,10 +10,10 @@ const resolvers = {
             if (context.user) {
                 // get data about user except password
                 const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate({
-                    path: 'orders.donation',
+                    path: 'donations',
                 });
 
-                userData.orders.sort((a, b) => b.orderDate - a.orderDate);
+                userData.donations.sort((a, b) => b.donationDate - a.donationDate);
 
                 return userData;
             }
@@ -183,41 +183,45 @@ const resolvers = {
             }
         },
 
-        donation: async (parent, { _id }) => {
-            return await Donation.findById(_id);
-        },
+        // donation: async (parent, { _id }) => {
+        //     return await Donation.findById(_id);
+        // },
 
-        order: async (parent, { _id }, context) => {
+        donation: async (parent, { _id }, context) => {
             if (context.user) {
                 // get data about user except password
                 const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate({
-                    path: 'orders.donation',
+                    path: 'donations',
                 });
 
-                return userData.orders.id(_id);
+                return userData.donations.id(_id);
             }
             throw AuthenticationError;
         },
 
-        checkout: async (parent, args, context) => {
+        checkout: async (parent, { donation }, context) => {
 
             const url = new URL(context.headers.referer).origin;
 
             // create new Order w/ donation ID (associates donation with order)
-            const order = await Order.create({ donation: args.donation });
+            const newDonation = await Donation.create({ donation });
+            
             // line_item object represents donation being made; it's a donation with a specific amount in USD.
-            const line_item = {
+            const line_items = [{
                 price_data: {
                     currency: 'usd',
-                    name: 'Donation',
-                    unit_amount: args.donation * 100
-                }
-            };
+                    product_data: {
+                        name: 'Donation'
+                    },
+                    unit_amount: donation * 100
+                },
+                quantity: 1
+            }];
 
             // make new checkout session; this defines details of the payment like payment method types accepted, the line item, etc.
             const session = await stripe.checkout.sessions.create({
                 payment_method_types: ['card'],
-                line_item,
+                line_items,
                 mode: 'payment',
                 success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${url}/`,
@@ -371,20 +375,24 @@ const resolvers = {
             }
         },
 
-        addOrder: async(parent, { donation }, context) => {
+        addDonation: async (parent, { donation }, context) => {
+
+            let userId = null;
+
             if (context.user) {
-                const order = new Order({ donation });
+                userId = context.user._id;
+            }
+            // opens up the donation object and adds userId: xxxx
+            const newDonation = new Donation({ ...donation, userId });
 
-                await User.findByIdAndUpdate(context.user._id, {
-                    $push: { orders: order }
-                });
-
-                return order;
+            if (userId) {
+                await User.findByIdAndUpdate(userId, {
+                    $push: { donations: newDonation }
+                })
             }
 
-            throw AuthenticationError;
+            return newDonation;
         }
-
 
     },
 

@@ -1,6 +1,6 @@
 const { model, Schema } = require('mongoose');
 const bcrypt = require('bcrypt');
-const Order = require('./Order');
+const Donation = require('./Donation');
 
 
 const userSchema = new Schema({
@@ -25,7 +25,7 @@ const userSchema = new Schema({
         type: Schema.Types.Mixed,
         ref: 'Book'
     }],
-    orders: [Order.schema]
+    donations: [Donation.schema]
 },
     {
         timestamps: true

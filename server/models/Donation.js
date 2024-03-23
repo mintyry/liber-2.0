@@ -15,6 +15,11 @@ const donationSchema = new Schema(
             required: true,
             min: 0.01
         },
+        donateDate:
+        {
+            type: Date,
+            default: Date.now
+        },
        
     }
 );
