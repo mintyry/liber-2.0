@@ -194,7 +194,8 @@ const resolvers = {
                     path: 'donations',
                 });
 
-                return userData.donations.id(_id);
+                const donation = userData.donations.find(data => data._id.toString() === _id);
+                return donation;
             }
             throw AuthenticationError;
         },
