@@ -2,5 +2,6 @@
 node_modules
 .env
 mynotes.txt
+TODOnotes.txt
 
 ignoredFiles

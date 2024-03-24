@@ -23,7 +23,8 @@ import { useQuery } from '@apollo/client';
 // import any queries and mutations
 import { QUERY_ALL_BOOKS } from '../utils/queries';
 import MostEngagedBook from '../Components/MostEngagedBook/SpotlightBook';
-import HighestRated from '../Components/HighestRated/HighestRated'
+import HighestRated from '../Components/HighestRated/HighestRated';
+import Donate from '../Components/Donate/Donate';
 
 const theme = createTheme({
     palette: {
@@ -198,6 +199,8 @@ function Home() {
                             <MostEngagedBook />
 
                             <HighestRated />
+
+                            <Donate />
                         </>
                     )
                 }
