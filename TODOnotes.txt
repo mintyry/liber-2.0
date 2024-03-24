@@ -1,6 +1,8 @@
 TODO: 
 
-- FIX NAV MENU SO IT IS NOT TOO BIG
+- STRIPE
+
+- MEET TEAM SAL AND RYAN TABS DONT TOUCH BOTTOM WHEN SCREEN ISNT TALL ENOUGH
 
 - limit ratings to one? (so user cannot overinflate ratings)
 - make an admin role after deploy, make sure to leave a note when submitting project 3 the sign in details so this way Diarmuid/Meg can access an admin account and test it out
