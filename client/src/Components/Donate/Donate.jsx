@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Grid, Pagination } from '@mui/material';
 import { useQuery } from '@apollo/client';
+import './donate.css';
 
 export const Donate = () => {
+
+    const [selectedAmount, setSelectedAmount] = useState('1.00');
+    const [customAmount, setCustomAmount] = useState('');
+
+    const handleAmountChange = (event) => {
+        // destructure value from event.target, so this way i dont have to write event.target.value all the time
+        const { value } = event.target;
+        // updates selectedAmount state with value
+        setSelectedAmount(value);
+        // if custom, clears out this input value and eventually display the custom input element
+        if (value === 'custom') {
+            setCustomAmount('');
+        }
+    };
+
+    const handleCustomAmountChange = (event) => {
+        let { value } = event.target;
+        value = value.replace(/[^0-9.]/g, '');
+        const parts = value.split('.');
+        if(parts.length > 2) {
+            value = parts[0] + '.' + parts[1];
+        }
+        if(parts.length === 2 && parts[1].length > 2) {
+            value = parts[0] + '.' + parts[1].slice(0,2);
+        }
+        setCustomAmount(value);
+    }
+
     return (
-        <Grid item sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem', border: '10px double #ededde' }}>
+        <Grid item id="donate-div" sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem', border: '10px double #ededde' }}>
             <div style={{ margin: '2rem' }}>
                 <p>
                     <span style={{ fontFamily: 'Coventry Garden', whiteSpace: 'nowrap' }}>{'{'} L i b e r {'}'}</span> still can't be sold.
@@ -17,10 +46,13 @@ export const Donate = () => {
                     If <span style={{ fontFamily: 'Coventry Garden', whiteSpace: 'nowrap' }}>{'{'} L i b e r {'}'}</span>  has given you $0.01 worth of knowledge this year, please give back. There are no small contributions: every cent counts, every donation counts. Thank you.
                 </p>
             </div>
-            {/* <div style={{ margin: '2rem' }}>
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="amount">Select or enter an amount:</label>
-                    <select id="amount" name="amount" value={selectedAmount} onChange={handleAmountChange}>
+            <div style={{ margin: '2rem' }}>
+                {/* <form onSubmit={handleSubmit}> */}
+                <form  >
+                    <label htmlFor="amount" style={{ width: '100%' }}>Choose an amount:</label>
+                    <br />
+                    
+                    <select id="amount" name="amount" value={selectedAmount} onChange={handleAmountChange} style={{ width: '150px' }}>
                         <option value="1.00">$1</option>
                         <option value="5.00">$5</option>
                         <option value="10.00">$10</option>
@@ -33,13 +65,14 @@ export const Donate = () => {
                             value={customAmount}
                             onChange={handleCustomAmountChange}
                             placeholder="Enter custom amount"
+                            style={{ width: '142px' }}
                             required
                         />
                     )}
                     <br />
-                    <button type="submit">Donate</button>
+                    <button type="submit" style={{ width: '100%' }}>Donate</button>
                 </form>
-            </div> */}
+            </div>
         </Grid>
     )
 };
