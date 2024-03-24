@@ -180,6 +180,24 @@ query HighestRatedBook {
   }
 }
 `
+export const QUERY_DONATION = gql`
+query Query($id: ID!) {
+  donation(_id: $id) {
+    _id
+    name
+    price
+    donationDate
+  }
+}
+`
+
+export const QUERY_CHECKOUT = gql`
+query Checkout($donation: Float) {
+  checkout(donation: $donation) {
+    session
+  }
+}
+`
 
 
 

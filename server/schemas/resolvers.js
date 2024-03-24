@@ -229,6 +229,12 @@ const resolvers = {
             });
 
             return { session: session.id };
+
+             // TEST IN GRAPHQL
+            // const newDonation = {id: 'mocked-donation-id'};
+            // const mockedSessionId = 'mocked-session0id';
+
+            // return { session: mockedSessionId};
         }
 
     },

@@ -139,3 +139,13 @@ mutation updateUser($id: ID) {
   }
 }
 `
+export const ADD_DONATION = gql`
+mutation Mutation($price: Float!) {
+  addDonation(price: $price) {
+    _id
+    name
+    price
+    donationDate
+  }
+}
+`
