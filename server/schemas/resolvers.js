@@ -205,7 +205,7 @@ const resolvers = {
 
             // create new Order w/ donation ID (associates donation with order)
             const newDonation = await Donation.create({ donation });
-            
+
             // line_item object represents donation being made; it's a donation with a specific amount in USD.
             const line_items = [{
                 price_data: {
@@ -375,7 +375,7 @@ const resolvers = {
             }
         },
 
-        addDonation: async (parent, { donation }, context) => {
+        addDonation: async (parent, { price }, context) => {
 
             let userId = null;
 
@@ -383,7 +383,11 @@ const resolvers = {
                 userId = context.user._id;
             }
             // opens up the donation object and adds userId: xxxx
-            const newDonation = new Donation({ ...donation, userId });
+            const newDonation = new Donation({
+                name: "Donation",
+                price,
+                userId
+            });
 
             if (userId) {
                 await User.findByIdAndUpdate(userId, {
