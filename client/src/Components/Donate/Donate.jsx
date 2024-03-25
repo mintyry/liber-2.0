@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Pagination } from '@mui/material';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery, useQuery } from '@apollo/client';
 import './donate.css';
+import { loadStripe } from '@stripe/stripe-js'
+import { QUERY_CHECKOUT } from '../../utils/queries';
+
+const stripePromise = loadStripe('pk_test_51OMfD0IrCECF0cvTiZDuepOELQCBcounv47vTgYcSr0vukbUMdPOPzTdN4DpiiDacwHpbilTrYRzpifkcIyXh1Jb00faO272QN');
 
 
 export const Donate = () => {
 
     const [selectedAmount, setSelectedAmount] = useState('1.00');
     const [customAmount, setCustomAmount] = useState('');
+    const [checkout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
     const handleAmountChange = (event) => {
         // destructure value from event.target, so this way i dont have to write event.target.value all the time
@@ -28,15 +33,15 @@ export const Donate = () => {
         // split at decimal; eg: 14.01 splits and becomes 14 and 01
         const parts = value.split('.');
         // If there are more than 2 elements in var part,
-        if(parts.length > 2) {
+        if (parts.length > 2) {
             // concatenate the first and second part only
             //so if it is somehow 14, 01, and 99, it will be 14.01
             value = parts[0] + '.' + parts[1];
         }
         // if length is two elements AND the second element string is more than two characters/numbers...
-        if(parts.length === 2 && parts[1].length > 2) {
+        if (parts.length === 2 && parts[1].length > 2) {
             // concatenate first element and second, and slice off, remove anything after the first two numbers (eg: 14.0111 becomes 14.01)
-            value = parts[0] + '.' + parts[1].slice(0,2);
+            value = parts[0] + '.' + parts[1].slice(0, 2);
         }
         setCustomAmount(value);
     };
@@ -50,8 +55,27 @@ export const Donate = () => {
             amount = amount + '.00'
         }
         console.log('Submit amount:', amount);
+        console.log(typeof amount);
         // Add  logic to submit the amount (e.g., send it to the server)
+        submitCheckout(parseFloat(amount));
     };
+
+    // STRIPE
+    useEffect(() => {
+        if (data) {
+            stripePromise.then((res) => {
+                res.redirectToCheckout({ sessionId: data.checkout.session });
+            });
+        }
+    }, [data]);
+
+    function submitCheckout(amount) {
+        checkout({
+            variables: {
+                donation: amount,
+            },
+        });
+    }
 
     return (
         <Grid item id="donate-div" sx={{ width: '100%', display: 'flex', justifyContent: 'center', marginBottom: '2rem', border: '10px double #ededde' }}>
@@ -71,7 +95,7 @@ export const Donate = () => {
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="amount" style={{ width: '100%' }}>Choose an amount:</label>
                     <br />
-                    
+
                     <select id="amount" name="amount" value={selectedAmount} onChange={handleAmountChange} style={{ width: '150px' }}>
                         <option value="1.00">$1</option>
                         <option value="5.00">$5</option>

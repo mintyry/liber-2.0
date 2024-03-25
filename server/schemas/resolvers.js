@@ -2,6 +2,9 @@ const { User, Book, Review, Donation, Order } = require('../models');
 const { AuthenticationError, signToken } = require('../utils/auth');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
+const myKey = process.env.STRIPE_SECRET_KEY
+console.log('this is key: ' + myKey);
+
 const resolvers = {
 
     Query: {
