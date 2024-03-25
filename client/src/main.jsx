@@ -11,6 +11,7 @@ import Signup from './pages/Signup.jsx';
 import SingleBook from './pages/SingleBook.jsx';
 import SearchResults from './pages/SearchResults.jsx';
 import Surprise from './pages/Surprise.jsx';
+import Success from './pages/Success.jsx';
 
 // import BookReader from './pages/BookReader.jsx'
 import Three from './Components/Three/Three.jsx';
@@ -63,7 +64,11 @@ const router = createBrowserRouter([
       {
         path: '/surprise',
         element: <Surprise />
-      }
+      },
+      {
+        path: '/success',
+        element: <Success />
+      },
    
     ]
   }
