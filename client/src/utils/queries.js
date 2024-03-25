@@ -192,7 +192,7 @@ query Query($id: ID!) {
 `
 
 export const QUERY_CHECKOUT = gql`
-query Checkout($donation: Float) {
+query checkout($donation: Float) {
   checkout(donation: $donation) {
     session
   }

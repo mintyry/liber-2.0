@@ -3,6 +3,7 @@ import { Grid, Pagination } from '@mui/material';
 import { useQuery } from '@apollo/client';
 import './donate.css';
 
+
 export const Donate = () => {
 
     const [selectedAmount, setSelectedAmount] = useState('1.00');
