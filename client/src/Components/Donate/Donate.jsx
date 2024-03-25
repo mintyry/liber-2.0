@@ -42,7 +42,12 @@ export const Donate = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const amount = selectedAmount === 'custom' ? customAmount : selectedAmount;
+        // amount = ternary operator -- if selectedAmount is custom, then amount = customAmount value, if not custom, choose selectedAmount value
+        let amount = selectedAmount === 'custom' ? customAmount : selectedAmount;
+
+        if (!amount.includes('.')) {
+            amount = amount + '.00'
+        }
         console.log('Submit amount:', amount);
         // Add  logic to submit the amount (e.g., send it to the server)
     };
