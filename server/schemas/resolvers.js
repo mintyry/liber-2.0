@@ -208,7 +208,7 @@ const resolvers = {
             const url = new URL(context.headers.referer).origin;
 
             // create new Order w/ donation ID (associates donation with order)
-            const newDonation = await Donation.create({ donation });
+            const newDonation = await Donation.create({ price: donation, name: 'Donation' });
 
             // line_item object represents donation being made; it's a donation with a specific amount in USD.
             const line_items = [{

@@ -64,7 +64,13 @@ export const Donate = () => {
     useEffect(() => {
         if (data) {
             stripePromise.then((res) => {
-                res.redirectToCheckout({ sessionId: data.checkout.session });
+                res.redirectToCheckout({ sessionId: data.checkout.session })
+                    .then((result) => {
+                        if (result.error) {
+                            console.error(result.error.message);
+                            // Handle any errors that occur during redirection.
+                        }
+                    });
             });
         }
     }, [data]);
