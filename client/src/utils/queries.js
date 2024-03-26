@@ -199,6 +199,18 @@ query checkout($donation: Float) {
 }
 `
 
+export const GET_NEW_DONATION= gql`
+query getDonation($id: ID!) {
+  donation(_id: $id) {
+    _id
+    name
+    price
+    donationDate
+  }
+}
+`
+
+
 
 
 

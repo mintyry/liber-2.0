@@ -55,7 +55,7 @@ export const Donate = () => {
             amount = amount + '.00'
         }
         console.log('Submit amount:', amount);
-        console.log(typeof amount);
+        console.log(parseFloat(amount));
         // Add  logic to submit the amount (e.g., send it to the server)
         submitCheckout(parseFloat(amount));
     };
@@ -76,7 +76,9 @@ export const Donate = () => {
     }, [data]);
 
     function submitCheckout(amount) {
+        // console.log(amount);
         checkout({
+            
             variables: {
                 donation: amount,
             },

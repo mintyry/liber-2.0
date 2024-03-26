@@ -191,24 +191,35 @@ const resolvers = {
         // },
 
         donation: async (parent, { _id }, context) => {
-            if (context.user) {
-                // get data about user except password
-                const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate({
-                    path: 'donations',
-                });
+            try {
+                if (context.user) {
+                    // get data about user except password
+                    const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate({
+                        path: 'donations',
+                    });
 
-                const donation = userData.donations.find(data => data._id.toString() === _id);
-                return donation;
+                    const donation = userData.donations.find(data => data._id.toString() === _id);
+                    return donation;
+                } else {
+                    const donation = await Donation.findById(_id);
+                    return donation;
+                }
+            } catch (error) {
+
+                throw AuthenticationError;
             }
-            throw AuthenticationError;
         },
 
         checkout: async (parent, { donation }, context) => {
 
             const url = new URL(context.headers.referer).origin;
 
+            console.log('donation value: ' + donation);
+            console.log
             // create new Order w/ donation ID (associates donation with order)
             const newDonation = await Donation.create({ price: donation, name: 'Donation' });
+
+            console.log(newDonation);
 
             // line_item object represents donation being made; it's a donation with a specific amount in USD.
             const line_items = [{
@@ -228,15 +239,15 @@ const resolvers = {
                 line_items,
                 mode: 'payment',
                 // wht follows the slash after url is the component/page name (success)
-                success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+                success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}&donation_id=${newDonation.id}`,
                 cancel_url: `${url}/`,
             });
-        
-         
+
+            console.log('session data: ' + JSON.stringify(session));
 
             return { session: session.id };
 
-             // TEST IN GRAPHQL
+            // TEST IN GRAPHQL
             // const newDonation = {id: 'mocked-donation-id'};
             // const mockedSessionId = 'mocked-session0id';
 
@@ -398,8 +409,7 @@ const resolvers = {
             // opens up the donation object and adds userId: xxxx
             const newDonation = new Donation({
                 name: "Donation",
-                price,
-                userId
+                price
             });
 
             if (userId) {
