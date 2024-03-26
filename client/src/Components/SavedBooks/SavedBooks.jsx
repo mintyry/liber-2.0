@@ -48,7 +48,7 @@ const SavedBooks = () => {
     return (
         <Grid container>
             {/* header greeting */}
-            <Grid item className="slide-from-left header-banner" mb={3} p={3} sx={{ width: '100%', fontSize: '1.8rem', color: '#f3f3ec', display:'flex', alignItems: 'center' }}>
+            <Grid item className="slide-from-left header-banner" mb={3} p={3} sx={{ width: '100%', fontSize: '1.8rem', color: '#666256', display:'flex', alignItems: 'center' }}>
                 <em className="saved-head-text">Welcome to your MyLibrary, {myData.username.charAt(0).toUpperCase() + myData.username.slice(1)}... </em>
             </Grid>
             {/* account container */}
@@ -62,24 +62,24 @@ const SavedBooks = () => {
                         width: '100%',
                         paddingTop: '1rem',
                         paddingLeft: '5rem',
-                        borderTop: '10px double #8abbb1'
+                        borderTop: '10px double #eed6c5'
                     }}
                 >
                     <p className="saved-head-text" style={{ fontSize: '1.5rem', color: '#505050' }}>Account info:</p>
                 </Grid>
                 {/* account info */}
-                <Grid item sx={{ backgroundColor: '#8abbb1', width: '100%', padding: '1rem' }}>
-                    <Grid item className="acc-hold"  sx={{ backgroundColor: '#8abbb1', width: '100%', padding: '2rem', display: 'flex', justifyContent: 'space-evenly', border: 'double 10px #f3f3ec', flexWrap: 'wrap' }}>
-                        <div className="acc-info" style={{ backgroundColor: '#99ccc2',  borderRadius: '5px', width: '100%', }}>
+                <Grid item sx={{ backgroundColor: '#eed6c5', width: '100%', padding: '1rem' }}>
+                    <Grid item className="acc-hold"  sx={{ backgroundColor: '#eed6c5', width: '100%', padding: '2rem', display: 'flex', justifyContent: 'space-evenly', border: 'double 10px #f3f3ec', flexWrap: 'wrap' }}>
+                        <div className="acc-info" style={{ backgroundColor: '#ede0d7',  borderRadius: '5px', width: '100%', }}>
                             <p style={{paddingLeft: '1rem', paddingRight: '1rem'}}>N A M E : &nbsp; {myData.username}</p>
                         </div>
-                        <div className="acc-info" style={{ backgroundColor: '#99ccc2',  borderRadius: '5px', width: '100%', }}>
+                        <div className="acc-info" style={{ backgroundColor: '#ede0d7',  borderRadius: '5px', width: '100%', }}>
                             <p style={{paddingLeft: '1rem', paddingRight: '1rem'}}>E M A I L : &nbsp; {myData.email}</p>
                         </div>
-                        <div className="acc-info" style={{ backgroundColor: '#99ccc2',  borderRadius: '5px', width: '100%', }}>
+                        <div className="acc-info" style={{ backgroundColor: '#ede0d7',  borderRadius: '5px', width: '100%', }}>
                             <p style={{paddingLeft: '1rem', paddingRight: '1rem'}}>S T A T U S : &nbsp; {myData.role}</p>
                         </div>
-                        <div className="acc-info" style={{ backgroundColor: '#99ccc2', borderRadius: '5px', width: '100%', }}>
+                        <div className="acc-info" style={{ backgroundColor: '#ede0d7', borderRadius: '5px', width: '100%', }}>
                             <p style={{paddingLeft: '1rem', paddingRight: '1rem'}}>B O R N: &nbsp; {new Date(parseInt(myData.createdAt)).toLocaleDateString()}</p>
 
                         </div>
@@ -101,14 +101,14 @@ const SavedBooks = () => {
                         paddingLeft: '5rem',
                         marginBottom: '1rem',
                         marginTop: '1rem',
-                        borderTop: '10px double #8abbb1'
+                        borderTop: '10px double #eed6c5'
                     }}
                 >
                     <p className="saved-head-text" style={{ fontSize: '1.5rem', color: '#505050' }}>MyBookshelf <em>{'('}{myBooks.length}{')'}</em></p>
                 </Grid>
 
                 {/* kept books section */}
-                <Grid className="books-container" container spacing={2} sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'stretch', justifyContent: 'center', padding: '5vw', border: 'double 10px #cae4df', marginLeft: '5rem', marginRight: '5rem', marginBottom: '2rem', backgroundColor: '#e9e9e0' }}>
+                <Grid className="books-container" container spacing={2} sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'stretch', justifyContent: 'center', padding: '5vw', border: 'double 10px #666256', marginLeft: '5rem', marginRight: '5rem', marginBottom: '2rem', backgroundColor: '#e9e9e0' }}>
 
                     {/* each book will be in its own div */}
                     {myBooks.map((myBook, index) => (
@@ -130,10 +130,10 @@ const SavedBooks = () => {
                             {/* delete button */}
                             <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
                                 <Button className="mylib-removebk" onClick={() => handleRemove(myBook.bookId)} sx={{
-                                    backgroundColor: '#8abbb1',
+                                    backgroundColor: '#c5af9f',
                                     color: '#f3f3ec',
                                     '&:hover': {
-                                        backgroundColor: '#6a8e86',
+                                        backgroundColor: '#eed6c5',
                                     },
                                 }}
                                     variant="contained">

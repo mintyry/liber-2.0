@@ -5,6 +5,15 @@ import { Link } from 'react-router-dom';
 import { Box, Pagination } from '@mui/material';
 import { Grid } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
+
+const theme = createTheme({
+    palette: {
+        primary: { main: red[200] },
+    },
+});
+
 
 const AllBooks = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -35,20 +44,22 @@ const AllBooks = () => {
 
     return (
         <div style={{}}>
-            <Grid item className="slide-from-left" mb={3} p={3} sx={{ width: '100%', fontSize: '1.8rem', color: '#f3f3ec', }}>
+            <Grid item className="slide-from-left" mb={3} p={3} sx={{ width: '100%', fontSize: '1.8rem', color: '#666256', }}>
                 <em>Viewing all books:</em>
             </Grid>
             <div className="bottom-home-div" style={{ display: 'flex', justifyContent: 'center', marginTop: '2rem', marginBottom: '2rem', }}>
-                <Pagination
-                    count={data.getAllBooks.paginationInfo.totalPages}
-                    page={currentPage}
-                    onChange={handlePageChange}
-                    variant="outlined"
-                    color="success"
-                    sx={{ button: { color: '#8abbb1' } }}
-                />
+                <ThemeProvider theme={theme}>
+                    <Pagination
+                        count={data.getAllBooks.paginationInfo.totalPages}
+                        page={currentPage}
+                        onChange={handlePageChange}
+                        variant="outlined"
+                        color="primary"
+                        sx={{ button: { color: '#666256' } }}
+                    />
+                </ThemeProvider>
             </div>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center', alignItems: 'center', border: 'double 10px #cae4df', padding: '2rem' }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, justifyContent: 'center', alignItems: 'center', border: 'double 10px #eed6c5', padding: '2rem' }}>
                 {data && data.getAllBooks.books.map((book, index) => (
                     <Box
                         className="ind-book"
@@ -101,14 +112,16 @@ const AllBooks = () => {
                 ))}
             </Box>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
-                <Pagination
-                    count={data.getAllBooks.paginationInfo.totalPages}
-                    page={currentPage}
-                    onChange={handlePageChange}
-                    variant="outlined"
-                    color="success"
-                    sx={{ button: { color: '#8abbb1' } }}
-                />
+                <ThemeProvider theme={theme}>
+                    <Pagination
+                        count={data.getAllBooks.paginationInfo.totalPages}
+                        page={currentPage}
+                        onChange={handlePageChange}
+                        variant="outlined"
+                        color="primary"
+                        sx={{ button: { color: '#666256' } }}
+                    />
+                </ThemeProvider>
             </div>
         </div>
     );
