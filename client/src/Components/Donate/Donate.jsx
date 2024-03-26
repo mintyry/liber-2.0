@@ -53,6 +53,8 @@ export const Donate = () => {
 
         if (parseFloat(amount) === 0) {
             alert('Silly, you are already donating $0 by just being here!')
+        } else if (parseFloat(amount) < 0.50 && parseFloat(amount) >= 0.01) {
+            alert('Sorry, this payment system only allows a $0.50 minimum.')
         }
         //Minimum via Stripe is $0.50
 
