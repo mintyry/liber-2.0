@@ -51,12 +51,11 @@ export const Donate = () => {
         // amount = ternary operator -- if selectedAmount is custom, then amount = customAmount value, if not custom, choose selectedAmount value
         let amount = selectedAmount === 'custom' ? customAmount : selectedAmount;
 
-        if (!amount.includes('.')) {
-            amount = amount + '.00'
+        if (parseFloat(amount) === 0) {
+            alert('Silly, you are already donating $0 by just being here!')
         }
-        console.log('Submit amount:', amount);
-        console.log(parseFloat(amount));
-        // Add  logic to submit the amount (e.g., send it to the server)
+        //Minimum via Stripe is $0.50
+
         submitCheckout(parseFloat(amount));
     };
 
@@ -78,7 +77,7 @@ export const Donate = () => {
     function submitCheckout(amount) {
         // console.log(amount);
         checkout({
-            
+
             variables: {
                 donation: amount,
             },
