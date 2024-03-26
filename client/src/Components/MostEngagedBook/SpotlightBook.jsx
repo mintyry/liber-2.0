@@ -111,7 +111,7 @@ const MostEngagedBook = () => {
                     >
                         {/* Left */}
                         <Grid item xs={12} md={6} sx={{ padding: '2rem !important', backgroundColor: '#f7dfcd', borderRadius: '10px' }}>
-                            <p className="spotlight-book-text" style={{ fontSize: '2rem', color: '#666256' }}>
+                            <p className="spotlight-book-text" style={{ fontSize: '1.5rem', color: '#666256' }}>
                                 The current most-popular book is <em style={{fontWeight: '400'}}>{MostEngagedBook.title}</em>. People are buzzing about it. Whether they like or they hate it, they are discussing this classic. Take part in the conversation or take a chance and read this book! Enjoy it with our bookworm community or save it to your MyLibrary for later. Feel free to comment and leave ratings on your favorite book. It may have a chance to be spotlighted here on <span style={{ fontFamily: 'Coventry Garden', whiteSpace: 'nowrap' }}>{'{'} L i b e r {'}'}</span>.
                             </p>
                         </Grid>

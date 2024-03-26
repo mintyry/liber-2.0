@@ -9,12 +9,14 @@ import { Link } from 'react-router-dom';
 import { KEEP_BOOK } from '../../utils/mutations';
 import { Modal } from '@mui/material';
 import Login from '../Login/Login';
-import useLoginClick from '../../utils/loginClick'
+import useLoginClick from '../../utils/loginClick';
+import Rating from '@mui/material/Rating';
 
 const HighestRated = () => {
     const { loading, error, data } = useQuery(QUERY_HIGHEST_RATED_BOOK);
     const [bookAdded, setBookAdded] = useState(false);
     const [addedBooks, setAddedBooks] = useState(new Set()); // Keep track of added book IDs
+    let [avgRating, setAvgRating] = useState(0); //calculate average rating
 
 
     const {
@@ -29,12 +31,32 @@ const HighestRated = () => {
         refetchQueries: [{ query: QUERY_MY_LIBRARY }]
     });
     const HighestRatedBook = data?.HighestRatedBook;
-    
+
+    console.log(HighestRatedBook)
 
     useEffect(() => {
         // Reset bookAdded state when a new highest rated book is loaded
         setBookAdded(false);
     }, [HighestRatedBook]);
+
+    // LOGIC FOR AVG RATING
+    useEffect(() => {
+        if (HighestRatedBook) {
+            // calculates average rating
+            const ratingCount = HighestRatedBook.reviews.length;
+            let totalRating = 0;
+            HighestRatedBook.reviews.map((book) => {
+                // console.log(book.rating);
+                totalRating += book.rating
+            })
+
+            avgRating = +(totalRating / ratingCount).toFixed(2);
+            setAvgRating(avgRating);
+
+            console.log(avgRating);
+        }
+
+    }, [data]);
 
     const handleKeepBook = async () => {
         try {
@@ -110,8 +132,8 @@ const HighestRated = () => {
                             flexDirection: 'row',
                         }}
                     >
-                    
-                        {/* Right */}
+
+                        {/* Left */}
                         <Grid item xs={12} md={6} sx={{ textAlign: 'center' }}>
                             <div style={{ display: 'block' }}>
                                 <div>
@@ -166,11 +188,17 @@ const HighestRated = () => {
                             </div>
                         </Grid>
 
-                         {/* Left */}
-                         <Grid item xs={12} md={6} sx={{ padding: '2rem !important', backgroundColor: '#f7dfcd', borderRadius: '10px' }}>
-                            <p className="spotlight-book-text" style={{ fontSize: '2rem', color: '#666256' }}>
-                                Currently, the highest rated book is <em>{HighestRatedBook.title}</em>. The <span style={{ fontFamily: 'Coventry Garden', whiteSpace: 'nowrap' }}>{'{'} L i b e r {'}'}</span> community has spoken, and we love this book! It's proven to be a great read, so it is absolutely worth checking out! Give it a read now or keep it in your MyBookshelf to read later!
-                            </p>
+                        {/* Right */}
+                        <Grid item xs={12} md={6}>
+                            <div style={{display: 'flex', justifyContent:'center'}}>
+                                <Rating name="read-only" value={avgRating} precision={0.5} readOnly />
+                            </div>
+
+                            <Grid item sx={{ padding: '2rem !important', backgroundColor: '#f7dfcd', borderRadius: '10px' }}>
+                                <p className="spotlight-book-text" style={{ fontSize: '1.5rem', color: '#666256' }}>
+                                    Currently, the highest rated book is <em>{HighestRatedBook.title}</em> with an overall rating of {avgRating} stars. The <span style={{ fontFamily: 'Coventry Garden', whiteSpace: 'nowrap' }}>{'{'} L i b e r {'}'}</span> community has spoken, and we love this book! It's proven to be a great read, so it is absolutely worth checking out! Give it a read now or keep it in your MyBookshelf to read later!
+                                </p>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </>
