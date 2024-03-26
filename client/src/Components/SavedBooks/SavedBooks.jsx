@@ -69,7 +69,7 @@ const SavedBooks = () => {
                 </Grid>
                 {/* account info */}
                 <Grid item sx={{ backgroundColor: '#8abbb1', width: '100%', padding: '1rem' }}>
-                    <Grid item className="acc-hold"  sx={{ backgroundColor: '#8abbb1', width: '100%', padding: '2rem', display: 'flex', justifyContent: 'space-evenly', border: 'double 10px #f3f3ec', }}>
+                    <Grid item className="acc-hold"  sx={{ backgroundColor: '#8abbb1', width: '100%', padding: '2rem', display: 'flex', justifyContent: 'space-evenly', border: 'double 10px #f3f3ec', flexWrap: 'wrap' }}>
                         <div className="acc-info" style={{ backgroundColor: '#99ccc2',  borderRadius: '5px', width: '100%', }}>
                             <p style={{paddingLeft: '1rem', paddingRight: '1rem'}}>N A M E : &nbsp; {myData.username}</p>
                         </div>
@@ -112,7 +112,7 @@ const SavedBooks = () => {
 
                     {/* each book will be in its own div */}
                     {myBooks.map((myBook, index) => (
-                        <Grid className="ind-book" item key={myBook.bookId} xs={2.3} sx={{ animationDelay: `${index * 0.3}s` }}>
+                        <Grid className="ind-book" item key={myBook.bookId} xs={2.3} sx={{ animationDelay: `${index * 0.3}s`, marginLeft: '1rem'}}>
                             {/* image */}
                             <div style={{ width: '100%' }}>
                                 <Link to={`/singleBook/${myBook.bookId}`}>
@@ -129,7 +129,7 @@ const SavedBooks = () => {
 
                             {/* delete button */}
                             <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-                                <Button onClick={() => handleRemove(myBook.bookId)} sx={{
+                                <Button className="mylib-removebk" onClick={() => handleRemove(myBook.bookId)} sx={{
                                     backgroundColor: '#8abbb1',
                                     color: '#f3f3ec',
                                     '&:hover': {

@@ -14,6 +14,10 @@
     text-wrap: wrap;
 }
 
+.ind-book {
+    margin-left: 1rem;
+}
+
 @media only screen and (max-width: 600px) {
     .saved-head-text {
         font-size: 0.8rem !important;
@@ -37,7 +41,12 @@
     .single-book-title {
         font-size: 0.9rem !important;
     }
+
+    .mylib-removebk {
+        font-size: 0.55rem !important;
+    }
 }
+
 
 .action {
     white-space: nowrap;
