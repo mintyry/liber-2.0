@@ -18,28 +18,41 @@ function Success() {
         variables: { id: donationId },
     });
 
-  
+
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
-const donation = data.donation;
-const donateDate = new Date(parseInt(donation.donationDate));
+    const donation = data.donation;
+    const donateDate = new Date(parseInt(donation.donationDate));
+  
+
+   let formattedPrice = donation.price.toString();
+    if (!formattedPrice.includes('.')) {
+        formattedPrice = formattedPrice + '.00';
+    }
 
     return (
         <>
-            <div>
-                <h1>Success!</h1>
-                <h2>Thank you for your donation!</h2>
-                {donation && (
-                    <div>
-                        <p>Donation ID: {donation._id}</p>
-                        <p>Amount: {donation.price}</p>
-                        <p>Name: {donation.name}</p>
-                        <p>donation date: {donateDate.toLocaleString()}</p>
-                    
-                    </div>
-                )}
+            <div style={{ display: 'flex', justifyContent: 'center', margin: '1rem', padding: '1rem' }}>
+                <div>
+                    <h1>Success!</h1>
+                    <h2>Thank you for your donation!</h2>
+                    <p>
+                        Your donation goes to the lovely cause of helping feed a starving developer who is looking for work.<br />
+                        Please find your donation details below; if you are so inclined, please print this page for your records.
+                    </p>
+                    <br />
+                    <br />
+                    {donation && (
+                        <div>
+                            <p>Donation ID: {donation._id}</p><br/>
+                            <p>Donation amount: ${formattedPrice}</p><br/>
+                            <p>Donation date: {donateDate.toLocaleString()}</p><br/>
+
+                        </div>
+                    )}
+                </div>
             </div>
         </>
     )
