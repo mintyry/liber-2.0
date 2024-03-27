@@ -9,6 +9,7 @@ import Auth from '../utils/auth';
 
 function Success() {
     const [addDonation] = useMutation(ADD_DONATION);
+    const [isDonationSuccess, setIsDonationSuccess] = useState(false);
     const location = useLocation();
     const donationId = new URLSearchParams(location.search).get('donation_id');
     const isLoggedIn = Auth.loggedIn();
@@ -18,12 +19,33 @@ function Success() {
         variables: { id: donationId },
     });
 
-
+    useEffect(() => {
+        if (data && isLoggedIn) {
+            const donation = data.donation;
+            const donateDate = new Date(parseInt(donation.donationDate));
+            let formattedPrice = donation.price.toString();
+            if (!formattedPrice.includes('.')) {
+                formattedPrice = formattedPrice + '.00';
+            };
+        
+            addDonation(
+                {
+                    variables:
+                    {
+                        price: parseFloat(formattedPrice)
+                    }
+                }).then(() => {
+                    setIsDonationSuccess(true);
+                    console.log('Donation worked' + isDonationSuccess)
+                });
+        }
+    }, [data, isLoggedIn, addDonation, isDonationSuccess]);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
+    if (!data || !data.donation) return <p>No donation data found</p>;
 
-    const donation = data.donation;
+    const donation = data?.donation;
     const donateDate = new Date(parseInt(donation.donationDate));
 
 
@@ -31,19 +53,6 @@ function Success() {
     if (!formattedPrice.includes('.')) {
         formattedPrice = formattedPrice + '.00';
     };
-
-    // useEffect(() => {
-    //     if (data && isLoggedIn) {
-    //         addDonation(
-    //             {
-    //                 variables:
-    //                 {
-    //                     price: parseFloat(formattedPrice).toFixed(2)
-    //                 }
-    //             });
-    //     }
-    // }, [donation, isLoggedIn])
-
 
     return (
         <>
@@ -63,7 +72,7 @@ function Success() {
                             <p>Donation ID: {donation._id}</p><br />
                             <p>Donation amount: ${formattedPrice}</p><br />
                             <p>Donation date: {donateDate.toLocaleString()}</p><br />
-
+                            {/* {isDonationSuccess && <p>Donation was successful!</p>} */}
                         </div>
                     )}
                 </div>
