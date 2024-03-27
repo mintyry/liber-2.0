@@ -27,7 +27,7 @@ function Success() {
             if (!formattedPrice.includes('.')) {
                 formattedPrice = formattedPrice + '.00';
             };
-        
+            // console.log('this ran once first')
             addDonation(
                 {
                     variables:
@@ -36,10 +36,11 @@ function Success() {
                     }
                 }).then(() => {
                     setIsDonationSuccess(true);
-                    console.log('Donation worked' + isDonationSuccess)
+                    // console.log('Donation worked' + isDonationSuccess)
+                    // console.log('this ran once here')
                 });
         }
-    }, [data, isLoggedIn, addDonation, isDonationSuccess]);
+    }, [data, isLoggedIn, addDonation]);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
@@ -72,7 +73,7 @@ function Success() {
                             <p>Donation ID: {donation._id}</p><br />
                             <p>Donation amount: ${formattedPrice}</p><br />
                             <p>Donation date: {donateDate.toLocaleString()}</p><br />
-                            {/* {isDonationSuccess && <p>Donation was successful!</p>} */}
+                            {isDonationSuccess && <p>Donation was successful!</p>}
                         </div>
                     )}
                 </div>
