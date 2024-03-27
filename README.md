@@ -1,7 +1,7 @@
 # New Project
 
-<!-- 
-# Liber
+
+<!-- # Liber
 
 
 ## Description 📰
@@ -10,7 +10,7 @@ Liber is an interactive e-reader along with book-saving capabilities and a socia
 
 The app allows the user to search and view books, organized via our comprehensive search feature and a paginated system to help manage load times -- which was our biggest crux in learning throughout this project. We definitely kept in mind data size and load, but we also learned the hard way that testing in a development environment via localhost cannot prepare you for the real deal of a deployed server. However, most importantly, despite the many features and capabilities built into Liber, our most important feature is simply being able to read! The user can read their favorite classic novel in an immersive 3D environment and ramp that experience up a notch with an optional auditory experience, which plays the sounds of a forest.
 
-We learned to really use Threejs, we really learned and got the flow of graphql and how to build data from start to finish successfully. For some of us, it made us miss how easy it was to make a search bar in basic HTML and JS, whereas now, it took some critical thinking to make that magic happen.
+We learned to really use Threejs, we really learned and got the flow of graphql and how to build data from start to finish successfully. Personally, I got to get hands-on experience using Stripe and implementing it solo for the first time. For some of us, this project made us miss how easy it was to make a search bar in basic HTML and JS, whereas now, it took some critical thinking to make that magic happen.
 
 But alas, throughout the ups and downs, we hope you enjoy the one word in Latin that means both "free" and "book": [Liber 2.0](https://liber-com-71c194b85d8a.herokuapp.com).
 
@@ -70,6 +70,15 @@ Those who are special and logged in are admins, and admins can do some unwieldly
 
 And before you leave the app, feel free to meet the team behind this project!
 ![Meet the team](./client/src/assets/readmeimages/meetteam.png)
+
+### UPDATE -- WELCOME TO LIBER 2.0!
+Now with an updated color scheme to fit the season along with a more vibrant bookshelf vibe, Liber 2.0 boasts an update with the following new features:
+
+- The Spotlight Read section now accurately features the correct book with the most engagement.
+- New Outstanding Read section that features the book with the highest overall rating by the Liber community.
+![Outstanding Read - the book with the highest overall rating ](./client/src/assets/readmeimages/outstanding.png)
+- Users can now donate to the developer, with members being able to keep track of donations in their MyLibrary.
+![Donate to Liber developer](./client/src/assets/readmeimages/donate.png)
 
 
 <a id="Contributing"></a>
