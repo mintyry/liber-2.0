@@ -166,10 +166,10 @@ const CommentForm = ({ bookId }) => {
             />
           </ThemeProvider>
           <Button type="submit" variant="contained" color="primary" sx={{
-            backgroundColor: '#8abbb1',
-            color: '#f3f3ec',
+            backgroundColor: '#eed6c5',
+            color: '#000',
             '&:hover': {
-              backgroundColor: '#6a8e86',
+              backgroundColor: '#c5af9f',
             },
             marginTop: '1rem',
             marginBottom: '1rem'

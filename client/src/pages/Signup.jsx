@@ -185,7 +185,7 @@ export default function SignUp() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: '#8abbb1' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#eed6c5' }}>
             <MenuBook style={{ color: 'black' }} />
           </Avatar>
           <Typography component="h1" variant="h5">
@@ -258,9 +258,10 @@ export default function SignUp() {
               sx={{
                 mt: 3,
                 mb: 2,
-                bgcolor: '#8abbb1',
+                bgcolor: '#eed6c5',
+                color: '#000',
                 '&:hover': {
-                  backgroundColor: '#8abbb1',
+                  backgroundColor: '#eed6c5',
                 }
               }}
             >

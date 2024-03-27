@@ -17,7 +17,7 @@ const theme = createTheme({
 
 const AllBooks = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 12;
+    const itemsPerPage = 15;
 
     const { loading, error, data } = useQuery(GET_ALL_BOOKS_WITH_PAGINATION, {
         variables: { page: currentPage, itemsPerPage: itemsPerPage },

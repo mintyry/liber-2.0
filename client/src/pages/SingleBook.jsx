@@ -107,7 +107,7 @@ function SingleBook() {
     return (
         <>
             {/* title header of single book's page */}
-            <Grid item className="slide-from-left header-banner " mb={3} p={3} sx={{ width: '100%', color: '#f3f3ec' }}>
+            <Grid item className="slide-from-left header-banner " mb={3} p={3} sx={{ width: '100%', color: '#666256' }}>
                 <p className="single-book-title"style={{ fontSize: '2rem' }}>{book.title}</p>
                 {/* authors, if more than one, had comma in between names. otherwise, no comma*/}
                 {book.authors.length > 1 ? (
@@ -132,9 +132,9 @@ function SingleBook() {
             </Grid>
 
             {/* container holding all content*/}
-            <Grid className="bottom-home-div" container py={3} spacing={3} sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', border: '10px double #8abbb1', margin: '0', backgroundColor: '#ececdc' }}>
+            <Grid className="bottom-home-div" container py={3} spacing={3} sx={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-evenly', alignItems: 'center', border: '10px double #666256', margin: '0', backgroundColor: '#ececdc' }}>
                 {/* Grid holds book and comment form */}
-                <div className="div-img-cmnt-form" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', border: '10px double #8abbb1', width: '90%', paddingTop: '2rem', paddingBottom: '2rem', backgroundColor: '#ededde' }}>
+                <div className="div-img-cmnt-form" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', border: '10px double #666256', width: '90%', paddingTop: '2rem', paddingBottom: '2rem', backgroundColor: '#ededde' }}>
                     {/* Grid holds book image and buttons */}
                     <Grid item sx={{ display: 'flex', flexDirection: 'column', flex: '1', justifyContent: 'center', alignItems: 'center', margin: '0' }}>
                         {/* image */}
@@ -150,20 +150,20 @@ function SingleBook() {
                             ) : (
                                 (isLoggedIn ? (
                                     <Button sx={{
-                                        backgroundColor: '#8abbb1',
-                                        color: '#f3f3ec',
+                                        backgroundColor: '#eed6c5',
+                                        color: '#000',
                                         '&:hover': {
-                                            backgroundColor: '#6a8e86',
+                                            backgroundColor: '#c5af9f',
                                         },
                                     }} variant="contained" onClick={handleKeepBook}>
                                         Keep Book
                                     </Button>
                                 ) : (
                                     <Button sx={{
-                                        backgroundColor: '#8abbb1',
-                                        color: '#f3f3ec',
+                                        backgroundColor: '#eed6c5',
+                                        color: '#000',
                                         '&:hover': {
-                                            backgroundColor: '#6a8e86',
+                                            backgroundColor: '#c5af9f',
                                         },
                                     }} variant="contained" onClick={handleLoginClick}>
                                         Keep Book
@@ -172,10 +172,10 @@ function SingleBook() {
                             )}
                             <Link to={`/bookReader/${id}`}>
                                 <Button sx={{
-                                    backgroundColor: '#8abbb1',
-                                    color: '#f3f3ec',
+                                    backgroundColor: '#eed6c5',
+                                    color: '#000',
                                     '&:hover': {
-                                        backgroundColor: '#6a8e86',
+                                        backgroundColor: '#c5af9f',
                                     },
                                 }} variant="contained">Read Now</Button>
                             </Link>

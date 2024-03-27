@@ -74,7 +74,7 @@ const Login = ({ open, onClose }) => {
         backgroundColor: '#f3f3ec',
     };
     const avatarStyle = { backgroundColor: '#1bbd7e' };
-    const btnStyle = { margin: '8px 0', backgroundColor: '#8abbb1' };
+    const btnStyle = { margin: '8px 0', backgroundColor: '#eed6c5', color: '#000' };
     const textFieldStyle = { marginBottom: '16px' };
 
     // modify outline of textfield
@@ -158,7 +158,7 @@ const Login = ({ open, onClose }) => {
                             <CloseIcon color="action" className="close" sx={{ color: 'black' }} />
                         </IconButton>
                         <Grid align="center">
-                            <Avatar style={{ backgroundColor: '#8abbb1' }}>
+                            <Avatar style={{ backgroundColor: '#eed6c5' }}>
                                 <MenuBook style={{ color: 'black' }} />
                             </Avatar>
                             <Typography variant="h5" sx={{ color: 'darkslategray', margin: '8px 0' }}>

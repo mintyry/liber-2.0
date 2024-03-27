@@ -28,7 +28,7 @@ const CommentList = ({ reviews }) => {
                   <p>rating:</p>
                   <Rating name="read-only" value={review.rating} precision={0.5} readOnly />
                 </div>
-                <p className="card-body" style={{ fontSize: '1.2rem', marginBottom: '5px', }}><span style={{ fontWeight: 'bolder', }}>{review.userId && review.userId.username || 'Anonymous'}</span> said, <span style={{color: '#8abbb1'}}>{review.content}</span></p>
+                <p className="card-body" style={{ fontSize: '1.2rem', marginBottom: '5px', }}><span style={{ fontWeight: 'bolder', }}>{review.userId && review.userId.username || 'Anonymous'}</span> said, <span style={{color: '#897364'}}>"{review.content}"</span></p>
               </div>
             </div>
           ))}

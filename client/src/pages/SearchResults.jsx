@@ -42,7 +42,7 @@ function SearchResults() {
 
     return (
         <>
-            <Grid item className="slide-from-left" mb={3} p={3} sx={{ width: '100%', fontSize: '1.5rem', color: '#f3f3ec' }}>
+            <Grid item className="slide-from-left" mb={3} p={3} sx={{ width: '100%', fontSize: '1.5rem', color: '#000' }}>
                 <em>Lost, but found:</em>
             </Grid>
             {
