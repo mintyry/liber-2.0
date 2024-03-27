@@ -1,7 +1,4 @@
-# New Project
-
-
-<!-- # Liber
+# Liber Origin
 
 
 ## Description 📰
@@ -109,10 +106,6 @@ Thanks to D. Murphy & M. Meyers for mentoring us to this point!
 <a id="Questions"></a>
 ## Questions 📭
 
-Please enjoy our work at our respective GitHubs!
-- @[pToum21](https://github.com/pToum21)
-- @[SalGonzalez151](https://github.com/SalGonzalez151)
-- @[pashag123](https://github.com/pashag123)
 - @[mintyry](https://github.com/mintyry)
 
-For any additional inquiries, please message any one of us. -->
+For any additional inquiries, please message any one of us.
