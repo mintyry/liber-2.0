@@ -16,7 +16,7 @@ import { Link } from 'react-router-dom';
 // our files
 import './navbar.css';
 import '../../styles/main.css';
-import Auth from '../../utils/auth'
+import Auth from '../../utils/auth';
 import { QUERY_SEARCH_ALL_BOOKS } from '../../utils/queries';
 import SearchIcon from '@mui/icons-material/Search';
 

@@ -192,18 +192,10 @@ const resolvers = {
 
         donation: async (parent, { _id }, context) => {
             try {
-                if (context.user) {
-                    // get data about user except password
-                    const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate({
-                        path: 'donations',
-                    });
 
-                    const donation = userData.donations.find(data => data._id.toString() === _id);
-                    return donation;
-                } else {
-                    const donation = await Donation.findById(_id);
-                    return donation;
-                }
+                const donation = await Donation.findById(_id);
+                return donation;
+
             } catch (error) {
 
                 throw AuthenticationError;

@@ -3,15 +3,15 @@ import { useMutation, useQuery } from '@apollo/client';
 import { ADD_DONATION } from '../utils/mutations';
 import { GET_NEW_DONATION } from '../utils/queries';
 import { useLocation } from 'react-router-dom';
-//run addDonation(price)
-//get price from Donate model by id
+import Auth from '../utils/auth';
+
+
 
 function Success() {
     const [addDonation] = useMutation(ADD_DONATION);
-
     const location = useLocation();
     const donationId = new URLSearchParams(location.search).get('donation_id');
-    console.log(donationId);
+    const isLoggedIn = Auth.loggedIn();
 
 
     const { loading, error, data } = useQuery(GET_NEW_DONATION, {
@@ -25,12 +25,25 @@ function Success() {
 
     const donation = data.donation;
     const donateDate = new Date(parseInt(donation.donationDate));
-  
 
-   let formattedPrice = donation.price.toString();
+
+    let formattedPrice = donation.price.toString();
     if (!formattedPrice.includes('.')) {
         formattedPrice = formattedPrice + '.00';
-    }
+    };
+
+    // useEffect(() => {
+    //     if (data && isLoggedIn) {
+    //         addDonation(
+    //             {
+    //                 variables:
+    //                 {
+    //                     price: parseFloat(formattedPrice).toFixed(2)
+    //                 }
+    //             });
+    //     }
+    // }, [donation, isLoggedIn])
+
 
     return (
         <>
@@ -40,15 +53,16 @@ function Success() {
                     <h2>Thank you for your donation!</h2>
                     <p>
                         Your donation goes to the lovely cause of helping feed a starving developer who is looking for work.<br />
-                        Please find your donation details below; if you are so inclined, please print this page for your records.
+                        Please find your donation details below; if you are so inclined, please print this page for your records. <br />
+                        {isLoggedIn ? 'You may also refer to your donation history in your MyLibrary.' : ''}
                     </p>
                     <br />
                     <br />
                     {donation && (
                         <div>
-                            <p>Donation ID: {donation._id}</p><br/>
-                            <p>Donation amount: ${formattedPrice}</p><br/>
-                            <p>Donation date: {donateDate.toLocaleString()}</p><br/>
+                            <p>Donation ID: {donation._id}</p><br />
+                            <p>Donation amount: ${formattedPrice}</p><br />
+                            <p>Donation date: {donateDate.toLocaleString()}</p><br />
 
                         </div>
                     )}
