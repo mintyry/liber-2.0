@@ -32,7 +32,7 @@ const HighestRated = () => {
     });
     const HighestRatedBook = data?.HighestRatedBook;
 
-    console.log(HighestRatedBook)
+    // console.log(HighestRatedBook)
 
     useEffect(() => {
         // Reset bookAdded state when a new highest rated book is loaded
@@ -53,7 +53,7 @@ const HighestRated = () => {
             avgRating = +(totalRating / ratingCount).toFixed(2);
             setAvgRating(avgRating);
 
-            console.log(avgRating);
+            // console.log(avgRating);
         }
 
     }, [data]);

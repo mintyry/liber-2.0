@@ -3,7 +3,7 @@ const { AuthenticationError, signToken } = require('../utils/auth');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const myKey = process.env.STRIPE_SECRET_KEY
-console.log('this is key: ' + myKey);
+
 
 const resolvers = {
 
@@ -206,12 +206,12 @@ const resolvers = {
 
             const url = new URL(context.headers.referer).origin;
 
-            console.log('donation value: ' + donation);
-            console.log
+            // console.log('donation value: ' + donation);
+          
             // create new Order w/ donation ID (associates donation with order)
             const newDonation = await Donation.create({ price: donation, name: 'Donation' });
 
-            console.log(newDonation);
+            // console.log(newDonation);
 
             // line_item object represents donation being made; it's a donation with a specific amount in USD.
             const line_items = [{
@@ -235,7 +235,7 @@ const resolvers = {
                 cancel_url: `${url}/`,
             });
 
-            console.log('session data: ' + JSON.stringify(session));
+            // console.log('session data: ' + JSON.stringify(session));
 
             return { session: session.id };
 
