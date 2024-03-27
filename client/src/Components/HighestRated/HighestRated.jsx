@@ -195,7 +195,7 @@ const HighestRated = () => {
                             </div>
 
                             <Grid item sx={{ padding: '2rem !important', backgroundColor: '#f7dfcd', borderRadius: '10px' }}>
-                                <p className="spotlight-book-text" style={{ fontSize: '1.5rem', color: '#666256' }}>
+                                <p className="spotlight-book-text" style={{ fontSize: '1.5rem', color: '#666256', lineHeight: '2.5rem'  }}>
                                     Currently, the highest rated book is <em>{HighestRatedBook.title}</em> with an overall rating of {avgRating} stars. The <span style={{ fontFamily: 'Coventry Garden', whiteSpace: 'nowrap' }}>{'{'} L i b e r {'}'}</span> community has spoken, and we love this book! It's proven to be a great read, so it is absolutely worth checking out! Give it a read now or keep it in your MyBookshelf to read later!
                                 </p>
                             </Grid>
