@@ -49,6 +49,9 @@
     .acc-hold {
         flex-wrap: wrap; 
     }
+    .don-hist {
+        font-size: 1rem;
+    }
 }
 
 
