@@ -45,6 +45,10 @@
     .mylib-removebk {
         font-size: 0.55rem !important;
     }
+
+    .acc-hold {
+        flex-wrap: wrap; 
+    }
 }
 
 

@@ -69,7 +69,7 @@ const SavedBooks = () => {
                 </Grid>
                 {/* account info */}
                 <Grid item sx={{ backgroundColor: '#eed6c5', width: '100%', padding: '1rem' }}>
-                    <Grid item className="acc-hold"  sx={{ backgroundColor: '#eed6c5', width: '100%', padding: '2rem', display: 'flex', justifyContent: 'space-evenly', border: 'double 10px #f3f3ec', flexWrap: 'wrap' }}>
+                    <Grid item className="acc-hold"  sx={{ backgroundColor: '#eed6c5', width: '100%', padding: '2rem', display: 'flex', justifyContent: 'space-evenly', border: 'double 10px #f3f3ec'}}>
                         <div className="acc-info" style={{ backgroundColor: '#ede0d7',  borderRadius: '5px', width: '100%', }}>
                             <p style={{paddingLeft: '1rem', paddingRight: '1rem'}}>N A M E : &nbsp; {myData.username}</p>
                         </div>
