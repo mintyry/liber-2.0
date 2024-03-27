@@ -54,6 +54,12 @@
     }
 }
 
+@media only screen and (max-width: 350px) {
+    .don-hist {
+        font-size: 0.7rem;
+    }
+}
+
 
 .action {
     white-space: nowrap;

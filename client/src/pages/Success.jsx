@@ -73,7 +73,7 @@ function Success() {
                             <p>Donation ID: {donation._id}</p><br />
                             <p>Donation amount: ${formattedPrice}</p><br />
                             <p>Donation date: {donateDate.toLocaleString()}</p><br />
-                            {isDonationSuccess && <p>Donation was successful!</p>}
+                            {/* {isDonationSuccess && <p>Donation was successful!</p>} */}
                         </div>
                     )}
                 </div>
